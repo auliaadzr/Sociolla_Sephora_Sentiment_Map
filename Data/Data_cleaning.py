@@ -1,32 +1,66 @@
 import pandas as pd
+import os
 
-importPath = "./Raw/data_scrapping.csv"
-exportPath = "./Clean/data_cleaned.csv"
+# ======================================================
+# FUNGSI UTAMA CLEANING DATA
+# ======================================================
+def main():
+    """
+    Fungsi untuk membersihkan data hasil scraping:
+    - Menghapus duplikat
+    - Normalisasi teks ulasan
+    - Menyimpan data bersih
+    """
 
-print("--- Memulai Proses Cleaning ---")
+    # ======================================================
+    # KONFIGURASI PATH ROOT PROJECT
+    # ======================================================
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-try:
-    df = pd.read_csv(importPath)
-    print(f"Berhasil membaca file dari: {importPath}")
-    print(f"Jumlah data awal: {len(df)} baris")
+    importPath = os.path.join(BASE_DIR, "Data", "Raw", "data_scrapping.csv")
+    exportPath = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaned.csv")
 
-    df_clean = df.drop_duplicates().copy()
+    try:
+        # ======================================================
+        # BACA DATA
+        # ======================================================
+        df = pd.read_csv(importPath)
+        print(f"Berhasil membaca file")
+        print(f"Jumlah data awal: {len(df)} baris")
 
-    nama_kolom_ulasan = 'review' 
-    
-    if nama_kolom_ulasan in df_clean.columns:
-        df_clean[nama_kolom_ulasan] = df_clean[nama_kolom_ulasan].astype(str).str.lower()
-        print(f"Berhasil mengubah teks di kolom '{nama_kolom_ulasan}' menjadi huruf kecil.")
-    else:
-        print(f"Peringatan: Kolom '{nama_kolom_ulasan}' tidak ditemukan!")
-        print(f"Kolom yang tersedia adalah: {list(df_clean.columns)}")
+        # ======================================================
+        # HAPUS DUPLIKAT
+        # ======================================================
+        df_clean = df.drop_duplicates().copy()
 
-    df_clean.to_csv(exportPath, index=False)
-    
-    print("-" * 30)
-    print(f"Selesai! File bersih dibuat: data_cl.xlsx")
-    print(f"Jumlah data sekarang: {len(df_clean)} baris")
-    print(f"Berhasil menghapus {len(df) - len(df_clean)} baris duplikat.")
+        nama_kolom_ulasan = 'review' 
+        
+        # ======================================================
+        # NORMALISASI TEKS
+        # ======================================================
+        if nama_kolom_ulasan in df_clean.columns:
+            df_clean[nama_kolom_ulasan] = df_clean[nama_kolom_ulasan].astype(str).str.lower()
+            print(f"Kolom '{nama_kolom_ulasan}' berhasil dinormalisasi.")
+        else:
+            print(f"Peringatan: Kolom '{nama_kolom_ulasan}' tidak ditemukan!")
+            print(f"Kolom tersedia: {list(df_clean.columns)}")
 
-except Exception as e:
-    print(f"Terjadi kesalahan: {e}")
+        # ======================================================
+        # SIMPAN FILE BERSIH
+        # ======================================================
+        df_clean.to_csv(exportPath, index=False)
+        
+        print("-" * 30)
+        print(f"Selesai! File bersih dibuat: {exportPath}")
+        print(f"Jumlah data sekarang: {len(df_clean)} baris")
+        print(f"Berhasil menghapus {len(df) - len(df_clean)} baris duplikat.")
+
+    except Exception as e:
+        print(f"Terjadi kesalahan: {e}")
+
+
+# ======================================================
+# JIKA FILE DIJALANKAN LANGSUNG
+# ======================================================
+if __name__ == "__main__":
+    main()

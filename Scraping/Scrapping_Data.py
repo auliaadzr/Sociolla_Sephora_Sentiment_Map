@@ -1,154 +1,171 @@
 import requests
 import pandas as pd
 import time
+import os
 
 # ======================================================
-# KONFIGURASI FILE
+# FUNGSI UTAMA SCRAPING
 # ======================================================
-FILE_STATIC = "../Data/Raw/Data_manual.csv"        # File Excel data statis
-FILE_OUTPUT = "../Data/Raw/data_scrapping.csv"  # File output hasil scraping
-SHEET_OUTPUT = "reviews_scraping"    # Nama sheet output
+def main():
+    """
+    Fungsi utama untuk menjalankan proses scraping review
+    dari beberapa e-commerce (Sociolla & Sephora)
+    berdasarkan data statis.
+    """
 
-REVIEW_LIMIT = 30  
+    # ======================================================
+    # KONFIGURASI PATH ROOT PROJECT
+    # ======================================================
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# ======================================================
-# BACA DATA STATIS
-# ======================================================
-df_static = pd.read_csv(FILE_STATIC)            # Baca file statis
-df_static.columns = df_static.columns.str.strip()
+    FILE_STATIC = os.path.join(BASE_DIR, "Data", "Raw", "Data_manual.csv")     
+    FILE_OUTPUT = os.path.join(BASE_DIR, "Data", "Raw", "data_scrapping.csv")  
 
-all_reviews = []  # Penampung seluruh review
+    REVIEW_LIMIT = 30  
 
-# ======================================================
-# LOOP DATA STATIS
-# ======================================================
-for idx, row in df_static.iterrows():
+    # ======================================================
+    # BACA DATA STATIS
+    # ======================================================
+    df_static = pd.read_csv(FILE_STATIC)            
+    df_static.columns = df_static.columns.str.strip()
 
-    # Lewati jika produk_id kosong
-    if pd.isna(row["produk_id"]):
-        continue
+    all_reviews = []  # Penampung seluruh review
 
-    outlet_id = row["outlet_id"]                 
-    product_id = str(row["produk_id"])           
-    ecommerce = row["e-commere"].lower()          
-    sampling_index = int(row["sampling_index"]) if not pd.isna(row["sampling_index"]) else 0
+    # ======================================================
+    # LOOP DATA STATIS
+    # ======================================================
+    for idx, row in df_static.iterrows():
 
-    offset = sampling_index * REVIEW_LIMIT        # Offset review
-
-    # Data tambahan dari tabel statis
-    lat = row.get("lat")
-    lon = row.get("lon") if "lon" in row else row.get("long")
-    rating_global = row.get("Rating_global_produk")
-    jumlah_ulasan = row.get("Jumlah_ulasan")
-
-    print(f"Scraping | {ecommerce.upper()} | Outlet {outlet_id} | Product {product_id}")
-
-    # ==================================================
-    # SCRAPING SOCIOLLA
-    # ==================================================
-    if ecommerce == "sociolla":
-
-        url = "https://soco-api.sociolla.com/reviews"
-        headers = {
-            "User-Agent": "Mozilla/5.0",
-            "Accept": "application/json"
-        }
-
-        # Parameter request API Sociolla
-        params = {
-            "skip": offset,
-            "limit": REVIEW_LIMIT,
-            "sort": "-created_at",
-            "filter": f'{{"is_published":true,"elastic_search":true,"product_id":"{product_id}"}}'
-        }
-
-        res = requests.get(url, params=params, headers=headers)
-        if res.status_code != 200:
+        # Lewati jika produk_id kosong
+        if pd.isna(row["produk_id"]):
             continue
 
-        # Ambil data review Sociolla
-        for r in res.json().get("data", []):
-            all_reviews.append({
-                "outlet_id": outlet_id,
-                "produk_id": product_id,
-                "e_commerce": "sociolla",
-                "sampling_index": sampling_index,
-                "lat": lat,
-                "lon": lon,
-                "Rating_global_produk": rating_global,
-                "Jumlah_ulasan": jumlah_ulasan,
-                "review_id": r.get("_id"),
-                "nama_reviewer": r.get("name"),
-                "rating": r.get("average_rating"),
-                "review": r.get("detail"),
-                "tanggal": r.get("created_at"),
-            })
+        outlet_id = row["outlet_id"]                 
+        product_id = str(row["produk_id"])           
+        ecommerce = row["e-commere"].lower()          
+        sampling_index = int(row["sampling_index"]) if not pd.isna(row["sampling_index"]) else 0
 
-    # ==================================================
-    # SCRAPING SEPHORA
-    # ==================================================
-    elif ecommerce == "sephora":
+        offset = sampling_index * REVIEW_LIMIT        # Offset review
 
-        BASE_URL = "https://apps.bazaarvoice.com/bfd/v1/clients/sephora-au/api-products/cv2/resources/data/reviews.json"
-        HEADERS = {
-            "User-Agent": "Mozilla/5.0",
-            "Accept": "*/*",
-            "Origin": "https://www.sephora.co.id",
-            "Referer": "https://www.sephora.co.id/",
-            "bv-bfd-token": "19416,main_site,id_ID",
-        }
+        # Data tambahan dari tabel statis
+        lat = row.get("lat")
+        lon = row.get("lon") if "lon" in row else row.get("long")
+        rating_global = row.get("Rating_global_produk")
+        jumlah_ulasan = row.get("Jumlah_ulasan")
 
-        # Parameter request API Sephora
-        params = [
-            ("resource", "reviews"),
-            ("action", "REVIEWS_N_STATS"),
-            ("filter", f"productid:eq:{product_id}"),
-            ("filter", "isratingsonly:eq:false"),
-            ("include", "authors"),
-            ("limit", REVIEW_LIMIT),
-            ("offset", offset),
-            ("sort", "submissiontime:desc"),
-            ("apiversion", "5.5"),
-            ("displaycode", "19416-id_id"),
-        ]
+        print(f"Scraping | {ecommerce.upper()} | Outlet {outlet_id} | Product {product_id}")
 
-        res = requests.get(BASE_URL, headers=HEADERS, params=params)
-        if res.status_code != 200:
-            continue
+        # ==================================================
+        # SCRAPING SOCIOLLA
+        # ==================================================
+        if ecommerce == "sociolla":
 
-        response = res.json().get("response", {})
-        total = response.get("TotalResults", 0)
+            url = "https://soco-api.sociolla.com/reviews"
+            headers = {
+                "User-Agent": "Mozilla/5.0",
+                "Accept": "application/json"
+            }
 
-        # Cegah offset melebihi total review
-        if offset >= total:
-            continue
+            # Parameter request API Sociolla
+            params = {
+                "skip": offset,
+                "limit": REVIEW_LIMIT,
+                "sort": "-created_at",
+                "filter": f'{{"is_published":true,"elastic_search":true,"product_id":"{product_id}"}}'
+            }
 
-        # Ambil data review Sephora
-        for r in response.get("Results", []):
-            all_reviews.append({
-                "outlet_id": outlet_id,
-                "produk_id": product_id,
-                "e_commerce": "sephora",
-                "sampling_index": sampling_index,
-                "lat": lat,
-                "lon": lon,
-                "Rating_global_produk": rating_global,
-                "Jumlah_ulasan": jumlah_ulasan,
-                "review_id": r.get("Id"),
-                "nama_reviewer": r.get("UserNickname") or r.get("AuthorId"),
-                "rating": r.get("Rating"),
-                "review": r.get("ReviewText"),
-                "tanggal": r.get("SubmissionTime"),
-            })
+            res = requests.get(url, params=params, headers=headers)
+            if res.status_code != 200:
+                continue
 
-        time.sleep(0.5)  
+            # Ambil data review Sociolla
+            for r in res.json().get("data", []):
+                all_reviews.append({
+                    "outlet_id": outlet_id,
+                    "produk_id": product_id,
+                    "e_commerce": "sociolla",
+                    "sampling_index": sampling_index,
+                    "lat": lat,
+                    "lon": lon,
+                    "Rating_global_produk": rating_global,
+                    "Jumlah_ulasan": jumlah_ulasan,
+                    "review_id": r.get("_id"),
+                    "nama_reviewer": r.get("name"),
+                    "rating": r.get("average_rating"),
+                    "review": r.get("detail"),
+                    "tanggal": r.get("created_at"),
+                })
+
+        # ==================================================
+        # SCRAPING SEPHORA
+        # ==================================================
+        elif ecommerce == "sephora":
+
+            BASE_URL = "https://apps.bazaarvoice.com/bfd/v1/clients/sephora-au/api-products/cv2/resources/data/reviews.json"
+            HEADERS = {
+                "User-Agent": "Mozilla/5.0",
+                "Accept": "*/*",
+                "Origin": "https://www.sephora.co.id",
+                "Referer": "https://www.sephora.co.id/",
+                "bv-bfd-token": "19416,main_site,id_ID",
+            }
+
+            # Parameter request API Sephora
+            params = [
+                ("resource", "reviews"),
+                ("action", "REVIEWS_N_STATS"),
+                ("filter", f"productid:eq:{product_id}"),
+                ("filter", "isratingsonly:eq:false"),
+                ("include", "authors"),
+                ("limit", REVIEW_LIMIT),
+                ("offset", offset),
+                ("sort", "submissiontime:desc"),
+                ("apiversion", "5.5"),
+                ("displaycode", "19416-id_id"),
+            ]
+
+            res = requests.get(BASE_URL, headers=HEADERS, params=params)
+            if res.status_code != 200:
+                continue
+
+            response = res.json().get("response", {})
+            total = response.get("TotalResults", 0)
+
+            # Cegah offset melebihi total review
+            if offset >= total:
+                continue
+
+            # Ambil data review Sephora
+            for r in response.get("Results", []):
+                all_reviews.append({
+                    "outlet_id": outlet_id,
+                    "produk_id": product_id,
+                    "e_commerce": "sephora",
+                    "sampling_index": sampling_index,
+                    "lat": lat,
+                    "lon": lon,
+                    "Rating_global_produk": rating_global,
+                    "Jumlah_ulasan": jumlah_ulasan,
+                    "review_id": r.get("Id"),
+                    "nama_reviewer": r.get("UserNickname") or r.get("AuthorId"),
+                    "rating": r.get("Rating"),
+                    "review": r.get("ReviewText"),
+                    "tanggal": r.get("SubmissionTime"),
+                })
+
+            time.sleep(0.5)  
+
+    # ======================================================
+    # SIMPAN KE FILE BARU
+    # ======================================================
+    df_output = pd.DataFrame(all_reviews)
+    df_output.to_csv(FILE_OUTPUT, index=False)
+
+    print("SELESAI | Total review:", len(df_output))
+
 
 # ======================================================
-# SIMPAN KE FILE BARU
+# JIKA FILE DIJALANKAN LANGSUNG
 # ======================================================
-df_output = pd.DataFrame(all_reviews)
-
-with pd.ExcelWriter(FILE_OUTPUT, engine="openpyxl", mode="w") as writer:
-    df_output.to_csv(writer, sheet_name=SHEET_OUTPUT, index=False)
-
-print("SELESAI | Total review:", len(df_output))
+if __name__ == "__main__":
+    main()
