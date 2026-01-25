@@ -5,8 +5,8 @@ import time
 # ======================================================
 # KONFIGURASI FILE
 # ======================================================
-FILE_STATIC = "Data_Web.xlsx"        # File Excel data statis
-FILE_OUTPUT = "data_scrapping.xlsx"  # File output hasil scraping
+FILE_STATIC = "../Data/Raw/Data_manual.csv"        # File Excel data statis
+FILE_OUTPUT = "../Data/Raw/data_scrapping.csv"  # File output hasil scraping
 SHEET_OUTPUT = "reviews_scraping"    # Nama sheet output
 
 REVIEW_LIMIT = 30  
@@ -14,7 +14,7 @@ REVIEW_LIMIT = 30
 # ======================================================
 # BACA DATA STATIS
 # ======================================================
-df_static = pd.read_excel(FILE_STATIC)            # Baca file statis
+df_static = pd.read_csv(FILE_STATIC)            # Baca file statis
 df_static.columns = df_static.columns.str.strip()
 
 all_reviews = []  # Penampung seluruh review
@@ -149,6 +149,6 @@ for idx, row in df_static.iterrows():
 df_output = pd.DataFrame(all_reviews)
 
 with pd.ExcelWriter(FILE_OUTPUT, engine="openpyxl", mode="w") as writer:
-    df_output.to_excel(writer, sheet_name=SHEET_OUTPUT, index=False)
+    df_output.to_csv(writer, sheet_name=SHEET_OUTPUT, index=False)
 
 print("SELESAI | Total review:", len(df_output))

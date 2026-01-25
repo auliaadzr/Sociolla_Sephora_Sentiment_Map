@@ -1,7 +1,7 @@
 import pandas as pd
 
-importPath = "./Data/Raw/data_scrapping.csv"
-exportPath = "./Data/Clean/data_cleaned.csv"
+importPath = "./Raw/data_scrapping.csv"
+exportPath = "./Clean/data_cleaned.csv"
 
 print("--- Memulai Proses Cleaning ---")
 
