@@ -18,7 +18,7 @@ def main():
     # ======================================================
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    FILE_STATIC = os.path.join(BASE_DIR, "Data", "Raw", "Data_manual.csv")     
+    FILE_STATIC = os.path.join(BASE_DIR, "Data", "Raw", "data_website.csv")     
     FILE_OUTPUT = os.path.join(BASE_DIR, "Data", "Raw", "data_scrapping.csv")  
 
     REVIEW_LIMIT = 30  

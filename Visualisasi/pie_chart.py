@@ -7,7 +7,7 @@ def main():
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     # Ambil data dari hasil cleaning (data_cleaned.csv)
-    importPath = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaned.csv")
+    importPath = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaning.csv")
     exportVisualPath = os.path.join(BASE_DIR, "Data", "Visualisasi", "pie_chart_total_kepuasan.png")
 
     try:

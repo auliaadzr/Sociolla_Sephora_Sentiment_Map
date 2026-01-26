@@ -3,7 +3,7 @@ from Scraping import scrapping_data
 from Cleaning import data_cleaning
 from Visualisasi import rating_outlet
 from Visualisasi import pie_chart
-from Visualisasi import barchart
+from Visualisasi import bar_chart
 
 
 
@@ -42,7 +42,7 @@ def main():
         
         elif pilihan == "5":
             print("\n--- Mulai Visualisasi Bar Chart  ---")
-            barchart.main()
+            bar_chart.main()
 
         elif pilihan == "6":
             print("\n--- Mulai Semua Proses ---")
@@ -50,7 +50,7 @@ def main():
             data_cleaning.main()
             rating_outlet.main()
             pie_chart.main()
-            barchart.main()
+            bar_chart.main()
 
         elif pilihan == "0":
             print("Keluar...")
