@@ -16,7 +16,7 @@ def main():
         
         # Menentukan ulasan positif berdasarkan teks
         kata_positif = ['bagus', 'puas', 'enak', 'suka', 'mantap', 'recomended', 'cocok', 'love', 'best', 'original', 'keren', 'ramah','cinta', 'ringan', 'good', 'favorite', 'nice', ' recommended', 'juara', 'cantik', 'wangi', 'terbaik', 'lembut', 'pigmentid', 'perfect', 'amazing', 'repurchase', 'great']
-        
+    
         def cek_sentimen(teks):
             teks = str(teks)
             if any(kata in teks for kata in kata_positif):
