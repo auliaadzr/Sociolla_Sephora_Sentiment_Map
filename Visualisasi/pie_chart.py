@@ -6,7 +6,7 @@ def main():
     # 1. KONFIGURASI PATH
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
-    # Ambil data dari hasil cleaning (data_cleaned.csv)
+    # Ambil data dari hasil cleaning 
     importPath = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaning.csv")
     exportVisualPath = os.path.join(BASE_DIR, "Data", "Visualisasi", "pie_chart_total_kepuasan.png")
 
@@ -25,7 +25,7 @@ def main():
             else:
                 return 'Netral / Tidak Puas'
 
-        # Terapkan analisis pada kolom review
+        # analisis pada kolom review
         df['Sentimen_Teks'] = df['review'].apply(cek_sentimen)
 
         # 4. HITUNG TOTAL GABUNGAN
@@ -61,5 +61,8 @@ def main():
     except Exception as e:
         print(f"Terjadi kesalahan: {e}")
 
+# ======================================================
+# JIKA FILE DIJALANKAN LANGSUNG
+# ======================================================
 if __name__ == "__main__":
     main()
