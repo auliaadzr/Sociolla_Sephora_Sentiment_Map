@@ -39,7 +39,8 @@ def main():
         # Lewati jika produk_id kosong
         if pd.isna(row["produk_id"]):
             continue
-
+        
+        Outlet = row["Outlet"]
         outlet_id = row["outlet_id"]                 
         product_id = str(row["produk_id"])           
         ecommerce = row["e-commere"].lower()          
@@ -81,6 +82,7 @@ def main():
             # Ambil data review Sociolla
             for r in res.json().get("data", []):
                 all_reviews.append({
+                    "Outlet": Outlet,
                     "outlet_id": outlet_id,
                     "produk_id": product_id,
                     "e_commerce": "sociolla",
@@ -138,6 +140,7 @@ def main():
             # Ambil data review Sephora
             for r in response.get("Results", []):
                 all_reviews.append({
+                    "Outlet": Outlet,
                     "outlet_id": outlet_id,
                     "produk_id": product_id,
                     "e_commerce": "sephora",

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 
 def main():
-    # 1. KONFIGURASI PATH
+    # KONFIGURASI PATH
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     # Ambil data dari hasil cleaning 
@@ -11,10 +11,9 @@ def main():
     exportVisualPath = os.path.join(BASE_DIR, "Data", "Visualisasi", "pie_chart_total_kepuasan.png")
 
     try:
-        # 2. BACA DATA
+        #BACA DATA
         df = pd.read_csv(importPath)
         
-        # 3. KATA KUNCI KEPUASAN (Keyword Matching)
         # Menentukan ulasan positif berdasarkan teks
         kata_positif = ['bagus', 'puas', 'enak', 'suka', 'mantap', 'recomended', 'cocok', 'love', 'best', 'original', 'keren', 'ramah','cinta', 'ringan', 'good', 'favorite', 'nice', ' recommended', 'juara', 'cantik', 'wangi', 'terbaik', 'lembut', 'pigmentid', 'perfect', 'amazing', 'repurchase', 'great']
         
@@ -25,13 +24,13 @@ def main():
             else:
                 return 'Netral / Tidak Puas'
 
-        # analisis pada kolom review
+        # Analisis pada kolom review
         df['Sentimen_Teks'] = df['review'].apply(cek_sentimen)
 
-        # 4. HITUNG TOTAL GABUNGAN
+        # HITUNG TOTAL GABUNGAN
         total_counts = df['Sentimen_Teks'].value_counts()
 
-        # 5. BUAT PIE CHART
+        # PIE CHART
         plt.figure(figsize=(10, 8))
         colors = ['#FF69B4', '#D3D3D3'] # Pink untuk Puas, Abu-abu untuk Netral
 
@@ -45,11 +44,11 @@ def main():
             shadow=True
         )
 
-        # 6. KUSTOMISASI
+        # KUSTOMISASI
         plt.title('Ringkasan Kepuasan Konsumen Retail Kecantikan di Bandung\n(Berdasarkan Analisis Teks 1.666 Ulasan)', 
                   fontsize=14, fontweight='bold')
 
-        # 7. SIMPAN HASIL
+        # SIMPAN HASIL
         plt.tight_layout()
         plt.savefig(exportVisualPath, dpi=300)
         

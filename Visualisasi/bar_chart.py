@@ -38,7 +38,7 @@ def main():
 
         # 4. KUSTOMISASI JUDUL & LABEL
         plt.title('Peringkat Kepuasan Pelanggan: Sociolla vs Sephora (Bandung)', fontsize=15, fontweight='bold', pad=20)
-        plt.xlabel('ID Outlet', fontsize=12)
+        plt.xlabel('outlet_id', fontsize=12)
         plt.ylabel('Skor Rating (Bayesian Average)', fontsize=12)
         plt.ylim(0, 5.5) # Skala bintang 1-5
 
