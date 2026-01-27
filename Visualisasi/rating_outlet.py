@@ -12,7 +12,7 @@ def main():
     try:
         df = pd.read_csv(importPath)
         
-        # --- PROSES RUMUS BAYESIAN ---
+        # PROSES RUMUS BAYESIAN 
         produk_stats = df.groupby(['Outlet', 'outlet_id','e-commere', 'Produk_BestSeller', 'lat', 'lon', 'Rating_global_produk']).agg(
             Rs=('rating', 'mean'),
             n=('rating', 'count')
@@ -36,8 +36,6 @@ def main():
     except Exception as e:
         print(f"Terjadi kesalahan pada perhitungan: {e}")
 
-# ======================================================
 # JIKA FILE DIJALANKAN LANGSUNG
-# ======================================================
 if __name__ == "__main__":
     main()

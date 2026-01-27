@@ -4,7 +4,7 @@ from Cleaning import data_cleaning
 from Visualisasi import rating_outlet
 from Visualisasi import pie_chart
 from Visualisasi import bar_chart
-
+from GIS import GIS
 
 
 def menu():
@@ -12,9 +12,10 @@ def menu():
     print("1. Jalankan Scraping Data")
     print("2. Jalankan Cleaning Data")
     print("3. Jalankan Data Rating Outlet")
-    print("4. Jalankan Visualisasi Ringkasan Kepuasan Konsumen Retail Kecantikan di Bandung")
-    print("5. Jalankan Visualisasi Peringkat Kepuasan Pelanggan: Sociolla vs Sephora (Bandung)")
-    print("6. Jalankan Semua")
+    print("4. Jalankan Visualisasi Rating Outlet Sociolla dan Sephora di Bandung (Pie Chart)")
+    print("5. Jalankan Visualisasi Kepuasan Pelanggan: Sociolla vs Sephora di Bandung (Bar Chart)")
+    print("6. Jalankan Geographic Information System (GIS)")
+    print("7. Jalankan Semua")
     print("0. Keluar")
     print("===========================")
 
@@ -43,14 +44,19 @@ def main():
         elif pilihan == "5":
             print("\n--- Mulai Visualisasi Bar Chart  ---")
             bar_chart.main()
-
+        
         elif pilihan == "6":
+            print("\n--- Mulai GIS  ---")
+            GIS.main()
+
+        elif pilihan == "7":
             print("\n--- Mulai Semua Proses ---")
             scrapping_data.main()
             data_cleaning.main()
             rating_outlet.main()
             pie_chart.main()
             bar_chart.main()
+            GIS.main()
 
         elif pilihan == "0":
             print("Keluar...")

@@ -3,29 +3,26 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
-# ======================================================
-# FUNGSI UTAMA VISUALISASI BAR CHART
-# ======================================================
 def main():
-    # 1. KONFIGURASI PATH
+    # KONFIGURASI PATH
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
-    # Mengambil data dari hasil perhitungan rating outlet
+    # Mengambil data 
     importPath = os.path.join(BASE_DIR, "Data", "Raw", "data_rating_outlet.csv")
     exportVisualPath = os.path.join(BASE_DIR, "Data", "Visualisasi", "bar_chart_rating.png")
 
     try:
-        # 2. BACA DATA
+        # BACA DATA
         df = pd.read_csv(importPath)
         
         # Urutkan berdasarkan rating tertinggi untuk estetika grafik
         df = df.sort_values(by='rating_outlet', ascending=False)
 
-        # 3. SETTING KANVAS GRAFIK
+        # SETTING KANVAS GRAFIK
         plt.figure(figsize=(12, 7))
         sns.set_style("whitegrid") # Memberi background garis halus
 
-        # Penentuan Warna: Pink (Sociolla), Hitam (Sephora)
+        # Penentuan Warna
         colors = ['#FF69B4' if brand.lower() == 'sociolla' else '#000000' for brand in df['e-commere']]
 
         # Membuat Bar Plot
@@ -36,7 +33,7 @@ def main():
             palette=colors
         )
 
-        # 4. KUSTOMISASI JUDUL & LABEL
+        # KUSTOMISASI JUDUL & LABEL
         plt.title('Peringkat Kepuasan Pelanggan: Sociolla vs Sephora (Bandung)', fontsize=15, fontweight='bold', pad=20)
         plt.xlabel('Outlet', fontsize=12)
         plt.ylabel('Skor Rating (Bayesian Average)', fontsize=12)
@@ -52,7 +49,7 @@ def main():
                    fontweight='bold',
                    fontsize=10)
 
-        # 5. SIMPAN KE FOLDER VISUALISASI
+        # SIMPAN HASIL
         plt.tight_layout()
         plt.savefig(exportVisualPath, dpi=300)
         
@@ -64,8 +61,6 @@ def main():
     except Exception as e:
         print(f"Gagal membuat visualisasi: {e}")
 
-# ======================================================
 # JIKA FILE DIJALANKAN LANGSUNG
-# ======================================================
 if __name__ == "__main__":
     main()

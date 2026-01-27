@@ -3,9 +3,6 @@ import pandas as pd
 import time
 import os
 
-# ======================================================
-# FUNGSI UTAMA SCRAPING
-# ======================================================
 def main():
     """
     Fungsi utama untuk menjalankan proses scraping review
@@ -13,27 +10,21 @@ def main():
     berdasarkan data statis.
     """
 
-    # ======================================================
     # KONFIGURASI PATH ROOT PROJECT
-    # ======================================================
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    FILE_STATIC = os.path.join(BASE_DIR, "Data", "Raw", "data_website_baru.csv")     
+    FILE_STATIC = os.path.join(BASE_DIR, "Data", "Raw", "data_website.csv")     
     FILE_OUTPUT = os.path.join(BASE_DIR, "Data", "Raw", "data_scrapping.csv")  
 
     REVIEW_LIMIT = 30  
 
-    # ======================================================
     # BACA DATA STATIS
-    # ======================================================
     df_static = pd.read_csv(FILE_STATIC)            
     df_static.columns = df_static.columns.str.strip()
 
     all_reviews = []  # Penampung seluruh review
 
-    # ======================================================
     # LOOP DATA STATIS
-    # ======================================================
     for idx, row in df_static.iterrows():
 
         # Lewati jika produk_id kosong
@@ -55,11 +46,9 @@ def main():
         rating_global = row.get("Rating_global_produk")
         jumlah_ulasan = row.get("Jumlah_ulasan")
 
-        print(f"Scraping | {ecommerce.upper()} | Outlet {Outlet} | Product {product_id}")
+        print(f"Scraping | {ecommerce.upper()} | Outlet {outlet_id} | Product {product_id}")
 
-        # ==================================================
         # SCRAPING SOCIOLLA
-        # ==================================================
         if ecommerce == "sociolla":
 
             url = "https://soco-api.sociolla.com/reviews"
@@ -100,9 +89,7 @@ def main():
                     "tanggal": r.get("created_at"),
                 })
 
-        # ==================================================
         # SCRAPING SEPHORA
-        # ==================================================
         elif ecommerce == "sephora":
 
             BASE_URL = "https://apps.bazaarvoice.com/bfd/v1/clients/sephora-au/api-products/cv2/resources/data/reviews.json"
@@ -135,7 +122,7 @@ def main():
             response = res.json().get("response", {})
             total = response.get("TotalResults", 0)
 
-            # Cegah offset melebihi total review
+            # Mencegah offset melebihi total review
             if offset >= total:
                 continue
 
@@ -161,17 +148,12 @@ def main():
 
             time.sleep(0.5)  
 
-    # ======================================================
     # SIMPAN KE FILE BARU
-    # ======================================================
     df_output = pd.DataFrame(all_reviews)
     df_output.to_csv(FILE_OUTPUT, index=False)
 
     print("SELESAI | Total review:", len(df_output))
 
-
-# ======================================================
 # JIKA FILE DIJALANKAN LANGSUNG
-# ======================================================
 if __name__ == "__main__":
     main()
