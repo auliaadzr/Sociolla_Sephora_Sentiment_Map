@@ -26,11 +26,11 @@ def main():
         sns.set_style("whitegrid") # Memberi background garis halus
 
         # Penentuan Warna: Pink (Sociolla), Hitam (Sephora)
-        colors = ['#FF69B4' if brand.lower() == 'sociolla' else '#000000' for brand in df['e_commerce']]
+        colors = ['#FF69B4' if brand.lower() == 'sociolla' else '#000000' for brand in df['Outlet']]
 
         # Membuat Bar Plot
         plot = sns.barplot(
-            x='outlet_id', 
+            x='Outlet', 
             y='rating_outlet', 
             data=df, 
             palette=colors
@@ -38,7 +38,7 @@ def main():
 
         # 4. KUSTOMISASI JUDUL & LABEL
         plt.title('Peringkat Kepuasan Pelanggan: Sociolla vs Sephora (Bandung)', fontsize=15, fontweight='bold', pad=20)
-        plt.xlabel('outlet_id', fontsize=12)
+        plt.xlabel('Outlet', fontsize=12)
         plt.ylabel('Skor Rating (Bayesian Average)', fontsize=12)
         plt.ylim(0, 5.5) # Skala bintang 1-5
 

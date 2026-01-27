@@ -13,7 +13,7 @@ def main():
         df = pd.read_csv(importPath)
         
         # --- PROSES RUMUS BAYESIAN ---
-        produk_stats = df.groupby(['e_commerce', 'outlet_id', 'lat', 'lon', 'produk_id', 'Rating_global_produk']).agg(
+        produk_stats = df.groupby(['Outlet','Produk_BestSeller', 'lat', 'lon', 'Rating_global_produk']).agg(
             Rs=('rating', 'mean'),
             n=('rating', 'count')
         ).reset_index()
@@ -23,7 +23,7 @@ def main():
             (produk_stats['n'] * produk_stats['Rs']) + (k * produk_stats['Rating_global_produk'])
         ) / (produk_stats['n'] + k)
 
-        outlet_final = produk_stats.groupby(['e_commerce', 'outlet_id', 'lat', 'lon']).agg(
+        outlet_final = produk_stats.groupby(['Outlet', 'lat', 'lon']).agg(
             rating_outlet=('P_score', 'mean')
         ).reset_index()
 

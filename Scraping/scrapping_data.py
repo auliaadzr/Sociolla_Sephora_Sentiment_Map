@@ -18,7 +18,7 @@ def main():
     # ======================================================
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    FILE_STATIC = os.path.join(BASE_DIR, "Data", "Raw", "data_website.csv")     
+    FILE_STATIC = os.path.join(BASE_DIR, "Data", "Raw", "data_website_baru.csv")     
     FILE_OUTPUT = os.path.join(BASE_DIR, "Data", "Raw", "data_scrapping.csv")  
 
     REVIEW_LIMIT = 30  
@@ -40,7 +40,7 @@ def main():
         if pd.isna(row["produk_id"]):
             continue
         
-        outlet_id = row["outlet_id"]                 
+        Outlet = row["Outlet"]                 
         product_id = str(row["produk_id"])           
         ecommerce = row["e-commere"].lower()          
         sampling_index = int(row["sampling_index"]) if not pd.isna(row["sampling_index"]) else 0
@@ -48,12 +48,13 @@ def main():
         offset = sampling_index * REVIEW_LIMIT        # Offset review
 
         # Data tambahan dari tabel statis
+        Produk_BestSeller = row.get("Produk_BestSeller")
         lat = row.get("lat")
         lon = row.get("lon") if "lon" in row else row.get("long")
         rating_global = row.get("Rating_global_produk")
         jumlah_ulasan = row.get("Jumlah_ulasan")
 
-        print(f"Scraping | {ecommerce.upper()} | Outlet {outlet_id} | Product {product_id}")
+        print(f"Scraping | {ecommerce.upper()} | Outlet {Outlet} | Product {product_id}")
 
         # ==================================================
         # SCRAPING SOCIOLLA
@@ -81,9 +82,9 @@ def main():
             # Ambil data review Sociolla
             for r in res.json().get("data", []):
                 all_reviews.append({
-                    "outlet_id": outlet_id,
+                    "Outlet": Outlet,
+                    "Produk_BestSeller" : Produk_BestSeller,
                     "produk_id": product_id,
-                    "e_commerce": "sociolla",
                     "sampling_index": sampling_index,
                     "lat": lat,
                     "lon": lon,
@@ -138,9 +139,9 @@ def main():
             # Ambil data review Sephora
             for r in response.get("Results", []):
                 all_reviews.append({
-                    "outlet_id": outlet_id,
+                    "Outlet": Outlet,
+                    "Produk_BestSeller" : Produk_BestSeller,
                     "produk_id": product_id,
-                    "e_commerce": "sephora",
                     "sampling_index": sampling_index,
                     "lat": lat,
                     "lon": lon,
