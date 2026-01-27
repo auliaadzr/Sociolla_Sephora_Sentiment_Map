@@ -40,7 +40,8 @@ def main():
         if pd.isna(row["produk_id"]):
             continue
         
-        Outlet = row["Outlet"]                 
+        Outlet = row["Outlet"]     
+        outlet_id = row["outlet_id"]            
         product_id = str(row["produk_id"])           
         ecommerce = row["e-commere"].lower()          
         sampling_index = int(row["sampling_index"]) if not pd.isna(row["sampling_index"]) else 0
@@ -83,6 +84,8 @@ def main():
             for r in res.json().get("data", []):
                 all_reviews.append({
                     "Outlet": Outlet,
+                    "outlet_id" : outlet_id,
+                    "e-commere" : ecommerce,
                     "Produk_BestSeller" : Produk_BestSeller,
                     "produk_id": product_id,
                     "sampling_index": sampling_index,
@@ -140,6 +143,8 @@ def main():
             for r in response.get("Results", []):
                 all_reviews.append({
                     "Outlet": Outlet,
+                    "outlet_id" : outlet_id,
+                    "e-commere" : ecommerce,
                     "Produk_BestSeller" : Produk_BestSeller,
                     "produk_id": product_id,
                     "sampling_index": sampling_index,

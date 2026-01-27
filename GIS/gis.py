@@ -1,41 +1,111 @@
 import folium
 import pandas as pd
 import os
+import math
 
-# 1. KONFIGURASI PATH
+# =====================================
+# 1. KONFIGURASI PATH FILE
+# =====================================
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Mengambil data hasil perhitungan Bayesian (rating_outlet)
-importPath = os.path.join(BASE_DIR, "Data", "Raw", "data_rating_outlet.csv")
 
-# 2. MEMBACA FILE CSV (Sesuai Praktikum 4)
-df = pd.read_csv(importPath)
+ratingPath = os.path.join(BASE_DIR, "Data", "Raw", "data_rating_outlet.csv")
+produkPath = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaning.csv")
 
-# 3. TENTUKAN TITIK TENGAH PETA (Bandung)
-center_lat = -6.9175 
+# =====================================
+# 2. BACA DATA CSV
+# =====================================
+df_rating = pd.read_csv(ratingPath)
+df_produk = pd.read_csv(produkPath)
+
+# =====================================
+# 3. TITIK TENGAH PETA
+# =====================================
+center_lat = -6.9175
 center_lon = 107.6191
-m = folium.Map(location=[center_lat, center_lon], zoom_start=13)
+m = folium.Map(location=[center_lat, center_lon], zoom_start=6)
 
-# 4. TAMBAHKAN CIRCLE MARKER DENGAN UKURAN DINAMIS
-for index, row in df.iterrows():
-    # Penentuan warna berdasarkan brand
-    brand_color = "pink" if row['e_commerce'].lower() == 'sociolla' else "black"
+# =====================================
+# 4. FUNGSI RATING BINTANG ⭐
+# =====================================
+def rating_to_stars(rating):
+    full_star = int(math.floor(rating))
+    half_star = 1 if rating - full_star >= 0.5 else 0
+    empty_star = 5 - full_star - half_star
     
-    # LOGIKA UKURAN: Rating tinggi = Radius besar
-    # Kita kalikan dengan 5 agar perbedaan ukurannya terlihat jelas di peta
-    ukuran_radius = row['rating_outlet'] * 5 
+    stars = "⭐" * full_star
+    stars += "✨" if half_star else ""
+    stars += "☆" * empty_star
+    return stars
 
+# =====================================
+# 5. LOOP DATA OUTLET
+# =====================================
+for index, row in df_rating.iterrows():
+    
+    outlet_id = row['outlet_id']
+    nama_outlet = row['Outlet']
+    rating = float(row['rating_outlet'])
+    lat = float(row['lat'])
+    lon = float(row['lon'])
+    brand = str(row['e-commere']).lower()
+    
+    # Ambil 7 produk best seller sesuai outlet
+    data_produk_outlet = df_produk[df_produk['outlet_id'] == outlet_id]
+    produk_list = data_produk_outlet['Produk_BestSeller'].tolist()
+    
+    produk_html = "<ol>"
+    for p in produk_list[:7]:
+        produk_html += f"<li>{p}</li>"
+    if len(produk_list) == 0:
+        produk_html += "<li>Data produk tidak tersedia</li>"
+    produk_html += "</ol>"
+    
+    # =====================================
+    # WARNA MARKER BERDASARKAN BRAND
+    # =====================================
+    if brand == "sociolla":
+        marker_color = "#ff4da6"  # pink
+    elif brand == "sephora":
+        marker_color = "black"   # hitam
+    else:
+        marker_color = "blue"    # default
+    
+    # =====================================
+    # UKURAN MARKER BERDASARKAN RATING
+    # =====================================
+    radius_marker = rating * 3
+    
+    # =====================================
+    # POPUP
+    # =====================================
+    popup_html = f"""
+    <b>{nama_outlet}</b><br>
+    Brand: {brand.capitalize()}<br>
+    Rating: {rating}<br>
+    {rating_to_stars(rating)}<br><br>
+    <b>7 Produk Best Seller:</b>
+    {produk_html}
+    """
+    
+    # =====================================
+    # MARKER LOKASI (CIRCLEMARKER)
+    # =====================================
     folium.CircleMarker(
-        location=[row["lat"], row["lon"]],
-        radius=ukuran_radius, # Ukuran otomatis membesar sesuai rating
-        popup=f"Outlet: {row['outlet_id']}<br>Rating: {row['rating_outlet']}",
-        tooltip=row['outlet_id'],
-        color=brand_color,
+        location=[lat, lon],
+        radius=radius_marker,
+        popup=popup_html,
+        tooltip=nama_outlet,
+        color=marker_color,
         fill=True,
-        fill_color=brand_color,
-        fill_opacity=0.6
+        fill_color=marker_color,
+        fill_opacity=0.7
     ).add_to(m)
 
-# 5. SIMPAN HASIL KE HTML
-exportPath = os.path.join(BASE_DIR, "Data", "Visualisasi", "peta_proportional.html")
+# =====================================
+# 6. SIMPAN PETA
+# =====================================
+exportPath = os.path.join(BASE_DIR, "Data", "Visualisasi", "peta_outlet.html")
 m.save(exportPath)
-print(f"Peta Proportional berhasil dibuat: {exportPath}")
+
+print("✅ Peta GIS berhasil dibuat!")
+print(f"📍 File: {exportPath}")

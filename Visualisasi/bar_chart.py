@@ -26,11 +26,11 @@ def main():
         sns.set_style("whitegrid") # Memberi background garis halus
 
         # Penentuan Warna: Pink (Sociolla), Hitam (Sephora)
-        colors = ['#FF69B4' if brand.lower() == 'sociolla' else '#000000' for brand in df['Outlet']]
+        colors = ['#FF69B4' if brand.lower() == 'sociolla' else '#000000' for brand in df['e-commere']]
 
         # Membuat Bar Plot
         plot = sns.barplot(
-            x='Outlet', 
+            x='outlet_id', 
             y='rating_outlet', 
             data=df, 
             palette=colors
