@@ -1,71 +1,75 @@
 import folium
 import pandas as pd
 import os
-import math
-from folium.plugins import MarkerCluster
 
-# 1. PATH CONFIG
+# === 1. KONFIGURASI PATH ===
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ratingPath = os.path.join(BASE_DIR, "Data", "Raw", "data_rating_outlet.csv")
 produkPath = os.path.join(BASE_DIR, "Data", "Raw", "data_website_baru.csv")
 
-# 2. BACA DATA
+# === 2. MEMBACA FILE CSV ===
 df_rating = pd.read_csv(ratingPath)
 df_produk = pd.read_csv(produkPath)
 
-# 3. INISIALISASI PETA & CLUSTER
-m = folium.Map(location=[-6.9175, 107.6191], zoom_start=13, tiles="cartodbpositron")
-marker_cluster = MarkerCluster().add_to(m)
+# === 3. TENTUKAN TITIK TENGAH PETA (Bandung) ===
+center_lat = -6.9175
+center_lon = 107.6191
+m = folium.Map(location=[center_lat, center_lon], zoom_start=13)
 
-# 4. FUNGSI RATING KE BINTANG (HTML Style)
-def get_stars_html(rating):
-    full = int(rating)
-    stars = '<span style="color: #fbbc04; font-size: 16px;">' + ('★' * full) + '</span>'
-    stars += '<span style="color: #ccc; font-size: 16px;">' + ('★' * (5 - full)) + '</span>'
-    return stars
-
-# 5. LOOP DATA OUTLET
-for _, row in df_rating.iterrows():
+# === 4. TAMBAHKAN MARKER DARI DATA ===
+for index, row in df_rating.iterrows():
+    # Ambil data dasar
     outlet_id = row["outlet_id"]
     nama_outlet = row["Outlet"]
-    rating = float(row["rating_outlet"])
-    lat, lon = float(row["lat"]), float(row["lon"])
-    brand = str(row["e-commere"]).lower() # Pastikan kolom e_commerce sesuai nama di CSV
+    rating_val = float(row["rating_outlet"])
+    
+    # Ambil Lat Lon dari file produk (website_baru)
+    detail = df_produk[df_produk["outlet_id"] == outlet_id]
+    
+    if not detail.empty:
+        lat = float(detail.iloc[0]["lat"])
+        lon = float(detail.iloc[0]["lon"])
+        
+        # --- LOGIKA AGAR 3 SEPHORA TIDAK BERTUMPUK (BULAT) ---
+        # Jika koordinat sama, kita geser sedikit berdasarkan index agar muncul semua
+        lat_final = lat + (index * 0.0001)
+        lon_final = lon + (index * 0.0001)
 
-    # AMBIL 7 PRODUK TERUNIK
-    produk_outlet = df_produk[df_produk["outlet_id"] == outlet_id]
-    produk_list = produk_outlet["Produk_BestSeller"].drop_duplicates().head(7).tolist()
+        # Penentuan Warna Brand
+        brand_raw = str(row["e-commere"]).lower()
+        color_marker = "pink" if "sociolla" in brand_raw else "black"
 
-    produk_items = "".join([f"<li style='margin-bottom:2px;'>{p}</li>" for p in produk_list])
-    if not produk_items: produk_items = "<li>Data tidak tersedia</li>"
+        # Membuat Bintang (Rating)
+        full_stars = int(rating_val)
+        stars_html = '<span style="color: #fbbc04;">' + ('★' * full_stars) + '</span>'
+        stars_html += '<span style="color: #ccc;">' + ('★' * (5 - full_stars)) + '</span>'
 
-    # WARNA BRAND
-    color = "pink" if "sociolla" in brand else "black"
+        # Mengambil 7 Produk Best Seller (Penomoran)
+        list_p = detail["Produk_BestSeller"].drop_duplicates().head(7).tolist()
+        produk_html = ""
+        for i, p in enumerate(list_p, 1):
+            produk_html += f"{i}. {p}<br>"
 
-    # DESAIN POPUP GOOGLE MAPS STYLE
-    popup_html = f"""
-    <div style="width: 220px; font-family: 'Roboto', Arial, sans-serif;">
-        <h4 style="margin:0; color:{'#e91e63' if color=='pink' else '#333'};">{nama_outlet}</h4>
-        <div style="margin: 5px 0;">
-            {get_stars_html(rating)} <b style="font-size:14px; vertical-align:middle;">{rating}</b>
+        # Desain Popup (HTML)
+        popup_content = f"""
+        <div style="width: 200px; font-family: Arial;">
+            <b>{nama_outlet}</b><br>
+            Rating: {rating_val} {stars_html}<br><br>
+            <b>7 Produk Best Seller:</b><br>
+            {produk_html}
         </div>
-        <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
-        <b style="font-size:11px; color:#555;">7 PRODUK BEST SELLER:</b>
-        <ul style="font-size:11px; padding-left:18px; margin:5px 0; color:#444;">
-            {produk_items}
-        </ul>
-    </div>
-    """
+        """
 
-    # TAMBAHKAN KE CLUSTER (Bukan langsung ke m)
-    folium.Marker(
-        location=[lat, lon],
-        popup=folium.Popup(popup_html, max_width=300),
-        tooltip=nama_outlet,
-        icon=folium.Icon(color=color, icon="shopping-cart", prefix="fa")
-    ).add_to(marker_cluster)
+        # Tambahkan Marker ke Peta (Sesuai Gaya Dosen)
+        folium.Marker(
+            location=[lat_final, lon_final],
+            popup=folium.Popup(popup_content, max_width=250),
+            tooltip=nama_outlet,
+            icon=folium.Icon(color=color_marker, icon="info-sign")
+        ).add_to(m)
 
-# 6. SIMPAN
-output_path = os.path.join(BASE_DIR, "Data", "Visualisasi", "peta_outlet_final.html")
-m.save(output_path)
-print(f"✅ Berhasil! Silakan cek file di: {output_path}")
+# === 5. SIMPAN HASIL KE HTML ===
+exportPath = os.path.join(BASE_DIR, "Data", "Visualisasi", "peta_outlet_final.html")
+m.save(exportPath)
+
+print("Peta berhasil dibuat: " + exportPath)
