@@ -6,7 +6,7 @@ def main():
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     # MENGAMBIL DATA DARI HASIL CLEANING 
-    importPath = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaning.csv")
+    importPath = os.path.join(BASE_DIR, "Data", "Clean", "cleaning.csv")
     exportPath = os.path.join(BASE_DIR, "Data", "Raw", "data_rating_outlet.csv")
 
     try:

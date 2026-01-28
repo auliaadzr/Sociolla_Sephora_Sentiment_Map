@@ -1,15 +1,15 @@
 import streamlit as st
 import os
-from streamlit_option_menu import option_menu
 import sys
-from Scraping import scrapping_data
-from Cleaning import data_cleaning
+import pandas as pd
+import time 
+from streamlit_option_menu import option_menu
+from Scraping import scraping_data
+from Cleaning import cleaning
 from Visualisasi import rating_outlet
 from Visualisasi import pie_chart
 from Visualisasi import bar_chart
 from GIS import gis
-import pandas as pd
-import time 
 
 st.set_page_config(
     page_title="Analisis Kepuasan Pelanggan",
@@ -61,7 +61,7 @@ if selected == "Beranda":
 
 # ======================
 elif selected == "Scraping":
-    st.subheader("🕷️ Scraping Review Produk")
+    st.subheader("Scraping Review Produk")
 
     st.info(
         "⚠️ Proses scraping mengakses API pihak ketiga (Sociolla & Sephora).\n"
@@ -71,10 +71,10 @@ elif selected == "Scraping":
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     scraping_path = os.path.join(BASE_DIR, "Data", "Raw", "data_scrapping.csv")
 
-    # TOMBOL SELALU ADA (ambil / update data)
+    # ambil / update data
     if st.button("🔄 Ambil / Perbarui Data Scraping Terbaru"):
         with st.spinner("⏳ Sedang melakukan scraping review..."):
-            scrapping_data.main()
+            scraping_data.main()
         st.success("✅ Scraping selesai! Data berhasil diperbarui.")
 
     # JIKA DATA SUDAH ADA → TAMPILKAN
@@ -98,7 +98,6 @@ elif selected == "Scraping":
     else:
         st.warning("📂 Data scraping belum tersedia. Silakan klik tombol di atas.")
 
-
 # ======================
 elif selected == "Cleaning":
     st.subheader("🧹 Data Cleaning Review")
@@ -120,7 +119,7 @@ elif selected == "Cleaning":
             st.error("❌ Data scraping belum tersedia. Silakan jalankan scraping terlebih dahulu.")
         else:
             with st.spinner("⏳ Sedang membersihkan data..."):
-                data_cleaning.main()
+                cleaning.main()
             st.success("✅ Data cleaning selesai!")
 
     # JIKA DATA CLEAN SUDAH ADA → TAMPILKAN
@@ -146,7 +145,7 @@ elif selected == "Cleaning":
 
 # ======================
 elif selected == "Rating Outlet":
-    st.subheader("⭐ Rating Outlet (Bayesian Average)")
+    st.subheader("⭐ Rating Outlet")
 
     st.info(
         "ℹ️ Rating outlet dihitung menggunakan metode Bayesian Average.\n"
@@ -207,13 +206,6 @@ elif selected == "Peta GIS":
         "Marker biru = lokasi Anda, pink/black = outlet."
     )
 
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    map_path = os.path.join(BASE_DIR, "Data", "Visualisasi", "peta_outlet_final.html")
-    rating_path = os.path.join(BASE_DIR, "Data", "Raw", "data_rating_outlet.csv")
-
-    # =====================
-    # Input lokasi & rating
-    # =====================
     col1, col2, col3 = st.columns(3)
     with col1:
         user_lat = st.number_input("📍 Latitude", value=-6.9175, format="%.6f")
@@ -222,35 +214,14 @@ elif selected == "Peta GIS":
     with col3:
         min_rating = st.slider("⭐ Minimal Rating Outlet", 3.0, 5.0, 4.3)
 
-    # =====================
-    # Tombol Generate / Perbarui Peta
-    # =====================
     if st.button("🗺️ Tampilkan / Perbarui Peta"):
-        if not os.path.exists(rating_path):
-            st.error("❌ Data rating outlet belum tersedia. Jalankan Rating Outlet terlebih dahulu.")
-        else:
-            with st.spinner("⏳ Membuat peta GIS..."):
-                gis.main(user_lat, user_lon, min_rating)
-            st.success("✅ Peta berhasil diperbarui!")
+        with st.spinner("⏳ Membuat peta GIS..."):
+            try:
+                map_path = gis.generate_map(user_lat, user_lon, min_rating)
+                st.success("✅ Peta berhasil diperbarui!")
+            except Exception as e:
+                st.error(str(e))
 
-    # =====================
-    # Tampilkan peta jika tersedia
-    # =====================
-    if os.path.exists(map_path):
-        last_update = os.path.getmtime(map_path)
-        st.caption(f"🕒 Terakhir diperbarui: {time.ctime(last_update)}")
-
-        with open(map_path, "r", encoding="utf-8") as f:
+    if os.path.exists("Data/Visualisasi/peta_outlet.html"):
+        with open("Data/Visualisasi/peta_outlet.html", "r", encoding="utf-8") as f:
             st.components.v1.html(f.read(), height=600)
-
-        with open(map_path, "rb") as f:
-            st.download_button(
-                "⬇️ Download Peta (HTML)",
-                f,
-                file_name="peta_outlet_rating.html",
-                mime="text/html"
-            )
-    else:
-        st.warning("📂 Peta belum tersedia. Silakan klik tombol di atas.")
-
-

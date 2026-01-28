@@ -31,8 +31,8 @@ def main():
 
         # Mapping warna 
         color_map = {
-            'Sociolla': '#FF69B4', # Pink
-            'Sephora': '#4F4F4F'   # Abu-abu Tua/Hitam
+            'Sociolla': '#FF69B4', 
+            'Sephora': '#4F4F4F'   
         }
 
         # Mengambil warna 
