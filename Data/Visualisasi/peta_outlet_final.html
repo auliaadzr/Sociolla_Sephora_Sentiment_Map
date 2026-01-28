@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_50993c4e057bae2d4ed61d6cfa87ed71 {
+                #map_ae8802018b5bbed84b5449bd8cecc621 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -50,20 +50,23 @@
             </script>
 
         
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
 </head>
 <body>
     
     
-            <div class="folium-map" id="map_50993c4e057bae2d4ed61d6cfa87ed71" ></div>
+            <div class="folium-map" id="map_ae8802018b5bbed84b5449bd8cecc621" ></div>
         
 </body>
 <script>
     
     
-            var map_50993c4e057bae2d4ed61d6cfa87ed71 = L.map(
-                "map_50993c4e057bae2d4ed61d6cfa87ed71",
+            var map_ae8802018b5bbed84b5449bd8cecc621 = L.map(
+                "map_ae8802018b5bbed84b5449bd8cecc621",
                 {
-                    center: [-6.9175, 107.6191],
+                    center: [-6.887535698554921, 107.6191],
                     crs: L.CRS.EPSG3857,
                     ...{
   "zoom": 13,
@@ -78,15 +81,15 @@
 
         
     
-            var tile_layer_50e6712318746e8d92f254629f0202fa = L.tileLayer(
-                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+            var tile_layer_4cc7675163dcf43e442d07ab8e2b90f3 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 {
   "minZoom": 0,
-  "maxZoom": 19,
-  "maxNativeZoom": 19,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
   "noWrap": false,
-  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
-  "subdomains": "abc",
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
   "detectRetina": false,
   "tms": false,
   "opacity": 1,
@@ -95,17 +98,506 @@
             );
         
     
-            tile_layer_50e6712318746e8d92f254629f0202fa.addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
+            tile_layer_4cc7675163dcf43e442d07ab8e2b90f3.addTo(map_ae8802018b5bbed84b5449bd8cecc621);
         
     
-            var marker_6fc6e4b2a5475f1304e2632a18988edf = L.marker(
-                [-6.9175, 107.6191],
+            var marker_cluster_605d39b5740f3bbdc7a37c04088f2798 = L.markerClusterGroup(
                 {
 }
-            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
+            );
         
     
-            var icon_a4a9d08d98da22ed9a620c6b119f50fd = L.AwesomeMarkers.icon(
+            var marker_66cab9f9871197a95cc786289dce6318 = L.marker(
+                [-6.91460502, 107.5958065],
+                {
+}
+            ).addTo(marker_cluster_605d39b5740f3bbdc7a37c04088f2798);
+        
+    
+            var icon_523de168e19ffb79397a73e3b1cc254b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_07cb12aa79750b74679cd9d8bf1caf30 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b6437e91fae6c606cce4e5ca23516fcb = $(`<div id="html_b6437e91fae6c606cce4e5ca23516fcb" style="width: 100.0%; height: 100.0%;">         <div style="width: 220px; font-family: Arial;">             <b>Sephora 23 Paskal</b><br>             <b>Brand:</b> Sephora<br>             <b>Rating:</b> 4.81 <span style="color:#fbbc04">★★★★☆</span><br>         </div>         </div>`)[0];
+                popup_07cb12aa79750b74679cd9d8bf1caf30.setContent(html_b6437e91fae6c606cce4e5ca23516fcb);
+            
+        
+
+        marker_66cab9f9871197a95cc786289dce6318.bindPopup(popup_07cb12aa79750b74679cd9d8bf1caf30)
+        ;
+
+        
+    
+    
+            marker_66cab9f9871197a95cc786289dce6318.bindTooltip(
+                `<div>
+                     Sephora 23 Paskal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_66cab9f9871197a95cc786289dce6318.setIcon(icon_523de168e19ffb79397a73e3b1cc254b);
+            
+    
+            var marker_ac12d5468d17168bd2bf19f4ed34026a = L.marker(
+                [-6.887791584, 107.59593050000001],
+                {
+}
+            ).addTo(marker_cluster_605d39b5740f3bbdc7a37c04088f2798);
+        
+    
+            var icon_207264c43992c9845a485a784e6c5315 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e22495dcabe57489a44243afc81328c9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e2fd03c4ae6e5490ec89a25107debf4e = $(`<div id="html_e2fd03c4ae6e5490ec89a25107debf4e" style="width: 100.0%; height: 100.0%;">         <div style="width: 220px; font-family: Arial;">             <b>Sephora Paris Van Java</b><br>             <b>Brand:</b> Sephora<br>             <b>Rating:</b> 4.69 <span style="color:#fbbc04">★★★★☆</span><br>         </div>         </div>`)[0];
+                popup_e22495dcabe57489a44243afc81328c9.setContent(html_e2fd03c4ae6e5490ec89a25107debf4e);
+            
+        
+
+        marker_ac12d5468d17168bd2bf19f4ed34026a.bindPopup(popup_e22495dcabe57489a44243afc81328c9)
+        ;
+
+        
+    
+    
+            marker_ac12d5468d17168bd2bf19f4ed34026a.bindTooltip(
+                `<div>
+                     Sephora Paris Van Java
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ac12d5468d17168bd2bf19f4ed34026a.setIcon(icon_207264c43992c9845a485a784e6c5315);
+            
+    
+            var marker_8f2f87f12f98ce682c7be8eaf7440c47 = L.marker(
+                [-6.954833396, 107.6987416],
+                {
+}
+            ).addTo(marker_cluster_605d39b5740f3bbdc7a37c04088f2798);
+        
+    
+            var icon_0cbe0b455b8d6e3674eecc9b0c54a0e0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6ac4eb1030e64b2aeac0a093781bf5a7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d2838bec8c06c99484e9452d25db95ad = $(`<div id="html_d2838bec8c06c99484e9452d25db95ad" style="width: 100.0%; height: 100.0%;">         <div style="width: 220px; font-family: Arial;">             <b>Sephora Summarecon Mall Bandung</b><br>             <b>Brand:</b> Sephora<br>             <b>Rating:</b> 4.66 <span style="color:#fbbc04">★★★★☆</span><br>         </div>         </div>`)[0];
+                popup_6ac4eb1030e64b2aeac0a093781bf5a7.setContent(html_d2838bec8c06c99484e9452d25db95ad);
+            
+        
+
+        marker_8f2f87f12f98ce682c7be8eaf7440c47.bindPopup(popup_6ac4eb1030e64b2aeac0a093781bf5a7)
+        ;
+
+        
+    
+    
+            marker_8f2f87f12f98ce682c7be8eaf7440c47.bindTooltip(
+                `<div>
+                     Sephora Summarecon Mall Bandung
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8f2f87f12f98ce682c7be8eaf7440c47.setIcon(icon_0cbe0b455b8d6e3674eecc9b0c54a0e0);
+            
+    
+            var marker_cbecb9bceecc3d7bdf99453960f28239 = L.marker(
+                [-6.91430502, 107.59610649999999],
+                {
+}
+            ).addTo(marker_cluster_605d39b5740f3bbdc7a37c04088f2798);
+        
+    
+            var icon_ff4c543cdcad844c96ac1a7b4a55c64a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e4edbf7a51ae85922d75051ed29de6de = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a2b50b26de6812c9d40cc953730ca9f4 = $(`<div id="html_a2b50b26de6812c9d40cc953730ca9f4" style="width: 100.0%; height: 100.0%;">         <div style="width: 220px; font-family: Arial;">             <b>Sociolla 23 Paskal</b><br>             <b>Brand:</b> Sociolla<br>             <b>Rating:</b> 4.81 <span style="color:#fbbc04">★★★★☆</span><br>         </div>         </div>`)[0];
+                popup_e4edbf7a51ae85922d75051ed29de6de.setContent(html_a2b50b26de6812c9d40cc953730ca9f4);
+            
+        
+
+        marker_cbecb9bceecc3d7bdf99453960f28239.bindPopup(popup_e4edbf7a51ae85922d75051ed29de6de)
+        ;
+
+        
+    
+    
+            marker_cbecb9bceecc3d7bdf99453960f28239.bindTooltip(
+                `<div>
+                     Sociolla 23 Paskal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cbecb9bceecc3d7bdf99453960f28239.setIcon(icon_ff4c543cdcad844c96ac1a7b4a55c64a);
+            
+    
+            var marker_809a5cde2f6e50382648162c1bc9c3ba = L.marker(
+                [-6.892586875, 107.5857968],
+                {
+}
+            ).addTo(marker_cluster_605d39b5740f3bbdc7a37c04088f2798);
+        
+    
+            var icon_005cc7e4464c2466cd01f4f605b73615 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1695760cd60f7f0b57a07c6059dfcbc2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_62065bd375eff7773b8080e5dd015e73 = $(`<div id="html_62065bd375eff7773b8080e5dd015e73" style="width: 100.0%; height: 100.0%;">         <div style="width: 220px; font-family: Arial;">             <b>Sociolla D'Botanica Bandung</b><br>             <b>Brand:</b> Sociolla<br>             <b>Rating:</b> 4.82 <span style="color:#fbbc04">★★★★☆</span><br>         </div>         </div>`)[0];
+                popup_1695760cd60f7f0b57a07c6059dfcbc2.setContent(html_62065bd375eff7773b8080e5dd015e73);
+            
+        
+
+        marker_809a5cde2f6e50382648162c1bc9c3ba.bindPopup(popup_1695760cd60f7f0b57a07c6059dfcbc2)
+        ;
+
+        
+    
+    
+            marker_809a5cde2f6e50382648162c1bc9c3ba.bindTooltip(
+                `<div>
+                     Sociolla D'Botanica Bandung
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_809a5cde2f6e50382648162c1bc9c3ba.setIcon(icon_005cc7e4464c2466cd01f4f605b73615);
+            
+    
+            var marker_5dfbdcc52e6194125ad91288a3a852d5 = L.marker(
+                [-6.92946318, 107.5862483],
+                {
+}
+            ).addTo(marker_cluster_605d39b5740f3bbdc7a37c04088f2798);
+        
+    
+            var icon_c3766361df6835364af7f170896536a0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d293f2c4455e34c586fd366a247dd05d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_aaab4af34c784211cd7adbf432555679 = $(`<div id="html_aaab4af34c784211cd7adbf432555679" style="width: 100.0%; height: 100.0%;">         <div style="width: 220px; font-family: Arial;">             <b>Sociolla Festival Citylink</b><br>             <b>Brand:</b> Sociolla<br>             <b>Rating:</b> 4.85 <span style="color:#fbbc04">★★★★☆</span><br>         </div>         </div>`)[0];
+                popup_d293f2c4455e34c586fd366a247dd05d.setContent(html_aaab4af34c784211cd7adbf432555679);
+            
+        
+
+        marker_5dfbdcc52e6194125ad91288a3a852d5.bindPopup(popup_d293f2c4455e34c586fd366a247dd05d)
+        ;
+
+        
+    
+    
+            marker_5dfbdcc52e6194125ad91288a3a852d5.bindTooltip(
+                `<div>
+                     Sociolla Festival Citylink
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5dfbdcc52e6194125ad91288a3a852d5.setIcon(icon_c3766361df6835364af7f170896536a0);
+            
+    
+            var marker_69b9808b2eac727f4a93ba08297cfa36 = L.marker(
+                [-6.954933396, 107.6986416],
+                {
+}
+            ).addTo(marker_cluster_605d39b5740f3bbdc7a37c04088f2798);
+        
+    
+            var icon_7ce19de41185f554678432720fe49c7a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f517d480b462c45f636f40f0062cc5af = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8e8dc7b2ce17aa338467f9377008571b = $(`<div id="html_8e8dc7b2ce17aa338467f9377008571b" style="width: 100.0%; height: 100.0%;">         <div style="width: 220px; font-family: Arial;">             <b>Sociolla Summarecon Mall Bandung</b><br>             <b>Brand:</b> Sociolla<br>             <b>Rating:</b> 4.82 <span style="color:#fbbc04">★★★★☆</span><br>         </div>         </div>`)[0];
+                popup_f517d480b462c45f636f40f0062cc5af.setContent(html_8e8dc7b2ce17aa338467f9377008571b);
+            
+        
+
+        marker_69b9808b2eac727f4a93ba08297cfa36.bindPopup(popup_f517d480b462c45f636f40f0062cc5af)
+        ;
+
+        
+    
+    
+            marker_69b9808b2eac727f4a93ba08297cfa36.bindTooltip(
+                `<div>
+                     Sociolla Summarecon Mall Bandung
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_69b9808b2eac727f4a93ba08297cfa36.setIcon(icon_7ce19de41185f554678432720fe49c7a);
+            
+    
+            var marker_a54ec78f33ac6e9b0547546319f34387 = L.marker(
+                [-6.926470535999999, 107.63541910000001],
+                {
+}
+            ).addTo(marker_cluster_605d39b5740f3bbdc7a37c04088f2798);
+        
+    
+            var icon_594fdaddd8a675b5d411ba76552fd35a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2d5b1cec3e6d7bc50105c9a9016ad134 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ec0bf2d73752a31fa29f27ea44ec3518 = $(`<div id="html_ec0bf2d73752a31fa29f27ea44ec3518" style="width: 100.0%; height: 100.0%;">         <div style="width: 220px; font-family: Arial;">             <b>Sociolla Transtudio Mall Bandung</b><br>             <b>Brand:</b> Sociolla<br>             <b>Rating:</b> 4.82 <span style="color:#fbbc04">★★★★☆</span><br>         </div>         </div>`)[0];
+                popup_2d5b1cec3e6d7bc50105c9a9016ad134.setContent(html_ec0bf2d73752a31fa29f27ea44ec3518);
+            
+        
+
+        marker_a54ec78f33ac6e9b0547546319f34387.bindPopup(popup_2d5b1cec3e6d7bc50105c9a9016ad134)
+        ;
+
+        
+    
+    
+            marker_a54ec78f33ac6e9b0547546319f34387.bindTooltip(
+                `<div>
+                     Sociolla Transtudio Mall Bandung
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a54ec78f33ac6e9b0547546319f34387.setIcon(icon_594fdaddd8a675b5d411ba76552fd35a);
+            
+    
+            var marker_3c84cb2010bd21b8d696fccab588287e = L.marker(
+                [-6.946321242, 107.64121109999999],
+                {
+}
+            ).addTo(marker_cluster_605d39b5740f3bbdc7a37c04088f2798);
+        
+    
+            var icon_63400de2a2590273167b0bbe4d98d30a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_34958f24097791ffa211f63cf63db0c3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_98f5426cb1118b463edfadb499f17800 = $(`<div id="html_98f5426cb1118b463edfadb499f17800" style="width: 100.0%; height: 100.0%;">         <div style="width: 220px; font-family: Arial;">             <b>Sociolla X Tenth Avenue</b><br>             <b>Brand:</b> Sociolla<br>             <b>Rating:</b> 4.8 <span style="color:#fbbc04">★★★★☆</span><br>         </div>         </div>`)[0];
+                popup_34958f24097791ffa211f63cf63db0c3.setContent(html_98f5426cb1118b463edfadb499f17800);
+            
+        
+
+        marker_3c84cb2010bd21b8d696fccab588287e.bindPopup(popup_34958f24097791ffa211f63cf63db0c3)
+        ;
+
+        
+    
+    
+            marker_3c84cb2010bd21b8d696fccab588287e.bindTooltip(
+                `<div>
+                     Sociolla X Tenth Avenue
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3c84cb2010bd21b8d696fccab588287e.setIcon(icon_63400de2a2590273167b0bbe4d98d30a);
+            
+    
+            var marker_82ec9bee0f12e5353e1cc8e279456b8b = L.marker(
+                [-6.922375058, 107.60534129999999],
+                {
+}
+            ).addTo(marker_cluster_605d39b5740f3bbdc7a37c04088f2798);
+        
+    
+            var icon_6ef79109cbae6eaef3bec693d01c982c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1af544f35d8eaec88697862631d48961 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a01ff3ac85096b912a0e9d2a82085060 = $(`<div id="html_a01ff3ac85096b912a0e9d2a82085060" style="width: 100.0%; height: 100.0%;">         <div style="width: 220px; font-family: Arial;">             <b>Sociolla X The Kings Shopping Centre</b><br>             <b>Brand:</b> Sociolla<br>             <b>Rating:</b> 4.79 <span style="color:#fbbc04">★★★★☆</span><br>         </div>         </div>`)[0];
+                popup_1af544f35d8eaec88697862631d48961.setContent(html_a01ff3ac85096b912a0e9d2a82085060);
+            
+        
+
+        marker_82ec9bee0f12e5353e1cc8e279456b8b.bindPopup(popup_1af544f35d8eaec88697862631d48961)
+        ;
+
+        
+    
+    
+            marker_82ec9bee0f12e5353e1cc8e279456b8b.bindTooltip(
+                `<div>
+                     Sociolla X The Kings Shopping Centre
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_82ec9bee0f12e5353e1cc8e279456b8b.setIcon(icon_6ef79109cbae6eaef3bec693d01c982c);
+            
+    
+            marker_cluster_605d39b5740f3bbdc7a37c04088f2798.addTo(map_ae8802018b5bbed84b5449bd8cecc621);
+        
+    
+            var marker_27f416d79563a69aab810cf1297e2fbc = L.marker(
+                [-6.887535698554921, 107.6191],
+                {
+}
+            ).addTo(map_ae8802018b5bbed84b5449bd8cecc621);
+        
+    
+            var icon_72e67e23a8ef028185334e900c1ea6cd = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -116,9 +608,26 @@
             );
         
     
-            marker_6fc6e4b2a5475f1304e2632a18988edf.bindTooltip(
+        var popup_7664f393e755fda6db64418389e39961 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7bff49d5761fda507a7d1181fac5c3da = $(`<div id="html_7bff49d5761fda507a7d1181fac5c3da" style="width: 100.0%; height: 100.0%;">Ini lokasi Anda</div>`)[0];
+                popup_7664f393e755fda6db64418389e39961.setContent(html_7bff49d5761fda507a7d1181fac5c3da);
+            
+        
+
+        marker_27f416d79563a69aab810cf1297e2fbc.bindPopup(popup_7664f393e755fda6db64418389e39961)
+        ;
+
+        
+    
+    
+            marker_27f416d79563a69aab810cf1297e2fbc.bindTooltip(
                 `<div>
-                     Lokasi Anda
+                     📍 Lokasi Anda
                  </div>`,
                 {
   "sticky": true,
@@ -126,387 +635,7 @@
             );
         
     
-                marker_6fc6e4b2a5475f1304e2632a18988edf.setIcon(icon_a4a9d08d98da22ed9a620c6b119f50fd);
-            
-    
-            var marker_aa3121098c0024b2cbc2c0b1977a2ca1 = L.marker(
-                [-6.91460502, 107.5958065],
-                {
-}
-            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
-        
-    
-            var icon_3c274ecf5115fe79ccd0b8dbc43fe175 = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "black",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_6e9ae068bc7044cbed303d58ebc49eb0 = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_930a8e1179aa5bd15c5967d8943d5d65 = $(`<div id="html_930a8e1179aa5bd15c5967d8943d5d65" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sephora 23 Paskal</b><br>             ⭐ Rating: 4.81<br>             📏 Jarak: 2.59 km<br><br>             <b>Best Seller:</b><br>1. Yves Saint Laurent Touche Éclat Glow-Pact Cushion<br>2. LANEIGE Glaze Craze Tinted Lip Serum<br>3. BILLIE ELISH Eilish Eau De Parfum<br>4. DIOR Backstage Rosy Glow Blush<br>5. NATASHA DENONA Eye Sculpt Eyeshadow Palette<br>6. MAC COSMETICS M•A•Cximal Silky Matte Lipstick<br>7. SOL DE JANEIRO Body Badalada Vitamin-Infused Lotion<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.91460502,107.5958065" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
-                popup_6e9ae068bc7044cbed303d58ebc49eb0.setContent(html_930a8e1179aa5bd15c5967d8943d5d65);
-            
-        
-
-        marker_aa3121098c0024b2cbc2c0b1977a2ca1.bindPopup(popup_6e9ae068bc7044cbed303d58ebc49eb0)
-        ;
-
-        
-    
-    
-                marker_aa3121098c0024b2cbc2c0b1977a2ca1.setIcon(icon_3c274ecf5115fe79ccd0b8dbc43fe175);
-            
-    
-            var marker_4a23efb105f4a63978844113514eb70c = L.marker(
-                [-6.887791584, 107.59593050000001],
-                {
-}
-            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
-        
-    
-            var icon_ab344f5098b16e34bddbd09d120f4406 = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "black",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_002dfe55df6c76121935830494a791b9 = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_5f9c5e05ac582271b07b101986b0dfc5 = $(`<div id="html_5f9c5e05ac582271b07b101986b0dfc5" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sephora Paris Van Java</b><br>             ⭐ Rating: 4.69<br>             📏 Jarak: 4.16 km<br><br>             <b>Best Seller:</b><br>1. HUDA Beauty Easy Bake Loose Powder<br>2. RARE Beauty Soft Pinch Liquid Blush<br>3. BILLIE ELISH Eilish Eau De Parfum<br>4. BOBBI BROWN Vitamin Enriche Face Base<br>5. DIOR Backstage Rosy Glow Blush<br>6. MAC COSMETICS M•A•Cximal Silky Matte Lipstick<br>7. SOL DE JANEIRO Body Badalada Vitamin-Infused Lotion<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.887891584,107.5958305" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
-                popup_002dfe55df6c76121935830494a791b9.setContent(html_5f9c5e05ac582271b07b101986b0dfc5);
-            
-        
-
-        marker_4a23efb105f4a63978844113514eb70c.bindPopup(popup_002dfe55df6c76121935830494a791b9)
-        ;
-
-        
-    
-    
-                marker_4a23efb105f4a63978844113514eb70c.setIcon(icon_ab344f5098b16e34bddbd09d120f4406);
-            
-    
-            var marker_816b73e22fdde8d6646587c7d5d6d02f = L.marker(
-                [-6.954833396, 107.6987416],
-                {
-}
-            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
-        
-    
-            var icon_f5379f024027b73a9d29b8e33f6c0c60 = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "black",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_0bb279471ab8262ecc67b808faa466f7 = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_9eadc113825ee3e9b067e60ff8c20876 = $(`<div id="html_9eadc113825ee3e9b067e60ff8c20876" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sephora Summarecon Mall Bandung</b><br>             ⭐ Rating: 4.67<br>             📏 Jarak: 9.71 km<br><br>             <b>Best Seller:</b><br>1. Yves Saint Laurent Touche Éclat Glow-Pact Cushion<br>2. LANEIGE Glaze Craze Tinted Lip Serum<br>3. FRES Kombuca Facial Treatment Essence<br>4. BOBBI BROWN Vitamin Enriche Face Base<br>5. DIOR Backstage Rosy Glow Blush<br>6. NATASHA DENONA Eye Sculpt Eyeshadow Palette<br>7. SOL DE JANEIRO Body Badalada Vitamin-Infused Lotion<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.955033396,107.6985416" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
-                popup_0bb279471ab8262ecc67b808faa466f7.setContent(html_9eadc113825ee3e9b067e60ff8c20876);
-            
-        
-
-        marker_816b73e22fdde8d6646587c7d5d6d02f.bindPopup(popup_0bb279471ab8262ecc67b808faa466f7)
-        ;
-
-        
-    
-    
-                marker_816b73e22fdde8d6646587c7d5d6d02f.setIcon(icon_f5379f024027b73a9d29b8e33f6c0c60);
-            
-    
-            var marker_b09ad77d1670785f637086cbd5e09157 = L.marker(
-                [-6.91430502, 107.59610649999999],
-                {
-}
-            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
-        
-    
-            var icon_61068b156071f80c852effa6c42d78f3 = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "pink",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_765ced457c252bbacf8060668e7560e3 = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_ec6045478e159bbe7b9f9347c859b918 = $(`<div id="html_ec6045478e159bbe7b9f9347c859b918" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla 23 Paskal</b><br>             ⭐ Rating: 4.81<br>             📏 Jarak: 2.59 km<br><br>             <b>Best Seller:</b><br>1. Neo Cushion Mewy<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. I'm From Black Rice Toner<br>4. Finally Found You SOY BRIGHT! Moisturizer<br>5. Wonder Crush Serum Liquid Blush<br>6. Superstay Vinyl Ink Tint<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.91460502,107.5958065" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
-                popup_765ced457c252bbacf8060668e7560e3.setContent(html_ec6045478e159bbe7b9f9347c859b918);
-            
-        
-
-        marker_b09ad77d1670785f637086cbd5e09157.bindPopup(popup_765ced457c252bbacf8060668e7560e3)
-        ;
-
-        
-    
-    
-                marker_b09ad77d1670785f637086cbd5e09157.setIcon(icon_61068b156071f80c852effa6c42d78f3);
-            
-    
-            var marker_03b905e88971180985eea07ba63acdae = L.marker(
-                [-6.892586875, 107.5857968],
-                {
-}
-            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
-        
-    
-            var icon_e2bc8378c433cd3a58d7f1484687c68e = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "pink",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_c61b3aec9e7a9bb3139a8f27f82e0551 = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_8d1af39606347dd1c3cf352b05430d4d = $(`<div id="html_8d1af39606347dd1c3cf352b05430d4d" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla D'Botanica Bandung</b><br>             ⭐ Rating: 4.82<br>             📏 Jarak: 4.61 km<br><br>             <b>Best Seller:</b><br>1. Neo Cushion Mewy<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. I'm From Black Rice Toner<br>4. Finally Found You SOY BRIGHT! Moisturizer<br>5. Wonder Crush Serum Liquid Blush<br>6. Superstay Vinyl Ink Tint<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.892986875,107.5853968" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
-                popup_c61b3aec9e7a9bb3139a8f27f82e0551.setContent(html_8d1af39606347dd1c3cf352b05430d4d);
-            
-        
-
-        marker_03b905e88971180985eea07ba63acdae.bindPopup(popup_c61b3aec9e7a9bb3139a8f27f82e0551)
-        ;
-
-        
-    
-    
-                marker_03b905e88971180985eea07ba63acdae.setIcon(icon_e2bc8378c433cd3a58d7f1484687c68e);
-            
-    
-            var marker_2656c410868aa9e342dc1d693ad77cc0 = L.marker(
-                [-6.92896318, 107.5867483],
-                {
-}
-            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
-        
-    
-            var icon_50d37280419b8304b0729d03fc56908d = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "pink",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_99d939e4d578c84ed70ad2821edd145c = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_7bd343f0b97fbea3e35fadf421149f20 = $(`<div id="html_7bd343f0b97fbea3e35fadf421149f20" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla Festival Citylink</b><br>             ⭐ Rating: 4.85<br>             📏 Jarak: 3.86 km<br><br>             <b>Best Seller:</b><br>1. Neo Cushion Mewy<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. I'm From Black Rice Toner<br>4. Finally Found You SOY BRIGHT! Moisturizer<br>5. Wonder Crush Serum Liquid Blush<br>6. Superstay Vinyl Ink Tint<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.92946318,107.5862483" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
-                popup_99d939e4d578c84ed70ad2821edd145c.setContent(html_7bd343f0b97fbea3e35fadf421149f20);
-            
-        
-
-        marker_2656c410868aa9e342dc1d693ad77cc0.bindPopup(popup_99d939e4d578c84ed70ad2821edd145c)
-        ;
-
-        
-    
-    
-                marker_2656c410868aa9e342dc1d693ad77cc0.setIcon(icon_50d37280419b8304b0729d03fc56908d);
-            
-    
-            var marker_58df7e66c2865aabb775443f1dd9fbf5 = L.marker(
-                [-6.954433396, 107.6991416],
-                {
-}
-            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
-        
-    
-            var icon_6effbe931eec781f748471e6281d0bf7 = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "pink",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_ebe1518951f2c9bb6318915229c2e128 = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_8e0e04017563a0024a7e2e125145d93d = $(`<div id="html_8e0e04017563a0024a7e2e125145d93d" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla Summarecon Mall Bandung</b><br>             ⭐ Rating: 4.82<br>             📏 Jarak: 9.71 km<br><br>             <b>Best Seller:</b><br>1. Neo Cushion Mewy<br>2. I'm From Black Rice Toner<br>3. Wonder Crush Serum Liquid Blush<br>4. Superstay Vinyl Ink Tint<br>5. Microblur Translucent Loose Powder<br>6. Powerstay Transferproof Matte Lip Cream<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.955033396,107.6985416" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
-                popup_ebe1518951f2c9bb6318915229c2e128.setContent(html_8e0e04017563a0024a7e2e125145d93d);
-            
-        
-
-        marker_58df7e66c2865aabb775443f1dd9fbf5.bindPopup(popup_ebe1518951f2c9bb6318915229c2e128)
-        ;
-
-        
-    
-    
-                marker_58df7e66c2865aabb775443f1dd9fbf5.setIcon(icon_6effbe931eec781f748471e6281d0bf7);
-            
-    
-            var marker_787eed2ef3ad4704e1d51afc0f1baccb = L.marker(
-                [-6.9259705359999995, 107.6359191],
-                {
-}
-            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
-        
-    
-            var icon_a5c7144f504feb4ee7e95201597469df = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "pink",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_9fb27f4e12b709b33c0de469f5d74aa6 = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_c8ef7114e2e411e5f548c0ce79ec8046 = $(`<div id="html_c8ef7114e2e411e5f548c0ce79ec8046" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla Transtudio Mall Bandung</b><br>             ⭐ Rating: 4.82<br>             📏 Jarak: 2.05 km<br><br>             <b>Best Seller:</b><br>1. Neo Cushion Mewy<br>2. I'm From Black Rice Toner<br>3. Wonder Crush Serum Liquid Blush<br>4. Superstay Vinyl Ink Tint<br>5. Microblur Translucent Loose Powder<br>6. Powerstay Transferproof Matte Lip Cream<br>7. Skintific Ultra Cover Powder Foundation<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.926670536,107.6352191" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
-                popup_9fb27f4e12b709b33c0de469f5d74aa6.setContent(html_c8ef7114e2e411e5f548c0ce79ec8046);
-            
-        
-
-        marker_787eed2ef3ad4704e1d51afc0f1baccb.bindPopup(popup_9fb27f4e12b709b33c0de469f5d74aa6)
-        ;
-
-        
-    
-    
-                marker_787eed2ef3ad4704e1d51afc0f1baccb.setIcon(icon_a5c7144f504feb4ee7e95201597469df);
-            
-    
-            var marker_ec97774188995af1a0eb0a2e205992f7 = L.marker(
-                [-6.945821242, 107.6417111],
-                {
-}
-            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
-        
-    
-            var icon_446fe12e94a9908f5f1653f1906bfd50 = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "pink",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_559dcec0fb6e414f922bb2f91efa5aad = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_7602cbe5c7c844bf6babf911589e223c = $(`<div id="html_7602cbe5c7c844bf6babf911589e223c" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla X Tenth Avenue</b><br>             ⭐ Rating: 4.8<br>             📏 Jarak: 4.02 km<br><br>             <b>Best Seller:</b><br>1. Mediheal Rose Prrn Essential Mask Healthy Glow<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. Finally Found You SOY BRIGHT! Moisturizer<br>4. Wonder Crush Serum Liquid Blush<br>5. Superstay Vinyl Ink Tint<br>6. Microblur Translucent Loose Powder<br>7. Powerstay Transferproof Matte Lip Cream<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.946621242,107.6409111" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
-                popup_559dcec0fb6e414f922bb2f91efa5aad.setContent(html_7602cbe5c7c844bf6babf911589e223c);
-            
-        
-
-        marker_ec97774188995af1a0eb0a2e205992f7.bindPopup(popup_559dcec0fb6e414f922bb2f91efa5aad)
-        ;
-
-        
-    
-    
-                marker_ec97774188995af1a0eb0a2e205992f7.setIcon(icon_446fe12e94a9908f5f1653f1906bfd50);
-            
-    
-            var marker_640ea6d69c2d5b392dff5e506231f17b = L.marker(
-                [-6.921875058, 107.6058413],
-                {
-}
-            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
-        
-    
-            var icon_e6e3622d62e82091474922e3875190e1 = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "pink",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_3c2b25261aad1ce2d08fba8cfc66def5 = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_ca974775dea61c68224167f2a812fa35 = $(`<div id="html_ca974775dea61c68224167f2a812fa35" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla X The Kings Shopping Centre</b><br>             ⭐ Rating: 4.79<br>             📏 Jarak: 1.67 km<br><br>             <b>Best Seller:</b><br>1. Mediheal Rose Prrn Essential Mask Healthy Glow<br>2. Finally Found You SOY BRIGHT! Moisturizer<br>3. Jung Saem Mool Essential Skin Nuder Cushion<br>4. Derma Crush Serum Liquid Blush <br>5. Wonder Crush Serum Liquid Blush<br>6. Microblur Translucent Loose Powder<br>7. Powerstay Transferproof Matte Lip Cream<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.922775058,107.6049413" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
-                popup_3c2b25261aad1ce2d08fba8cfc66def5.setContent(html_ca974775dea61c68224167f2a812fa35);
-            
-        
-
-        marker_640ea6d69c2d5b392dff5e506231f17b.bindPopup(popup_3c2b25261aad1ce2d08fba8cfc66def5)
-        ;
-
-        
-    
-    
-                marker_640ea6d69c2d5b392dff5e506231f17b.setIcon(icon_e6e3622d62e82091474922e3875190e1);
+                marker_27f416d79563a69aab810cf1297e2fbc.setIcon(icon_72e67e23a8ef028185334e900c1ea6cd);
             
 </script>
 </html>

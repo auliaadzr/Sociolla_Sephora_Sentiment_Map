@@ -59,7 +59,7 @@ def main():
 
         print(f"Visualisasi Berhasil!")
         print(f"Detail Statistik: {counts.to_dict()}")
-        plt.show()
+        plt.close()
 
     except Exception as e:
         print(f"Terjadi kesalahan visualisasi: {e}")
