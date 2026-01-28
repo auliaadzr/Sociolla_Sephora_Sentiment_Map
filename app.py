@@ -7,7 +7,7 @@ from Cleaning import data_cleaning
 from Visualisasi import rating_outlet
 from Visualisasi import pie_chart
 from Visualisasi import bar_chart
-from GIS import GIS
+from GIS import gis
 import pandas as pd
 import time 
 
@@ -230,7 +230,7 @@ elif selected == "Peta GIS":
             st.error("❌ Data rating outlet belum tersedia. Jalankan Rating Outlet terlebih dahulu.")
         else:
             with st.spinner("⏳ Membuat peta GIS..."):
-                GIS.main(user_lat, user_lon, min_rating)
+                gis.main(user_lat, user_lon, min_rating)
             st.success("✅ Peta berhasil diperbarui!")
 
     # =====================
