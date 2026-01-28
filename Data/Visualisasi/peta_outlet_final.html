@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_ea8f152aa38e767f76424916f1b35926 {
+                #map_50993c4e057bae2d4ed61d6cfa87ed71 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -54,14 +54,14 @@
 <body>
     
     
-            <div class="folium-map" id="map_ea8f152aa38e767f76424916f1b35926" ></div>
+            <div class="folium-map" id="map_50993c4e057bae2d4ed61d6cfa87ed71" ></div>
         
 </body>
 <script>
     
     
-            var map_ea8f152aa38e767f76424916f1b35926 = L.map(
-                "map_ea8f152aa38e767f76424916f1b35926",
+            var map_50993c4e057bae2d4ed61d6cfa87ed71 = L.map(
+                "map_50993c4e057bae2d4ed61d6cfa87ed71",
                 {
                     center: [-6.9175, 107.6191],
                     crs: L.CRS.EPSG3857,
@@ -78,7 +78,7 @@
 
         
     
-            var tile_layer_a25e259a2ffad0acd094fa1358cabbd9 = L.tileLayer(
+            var tile_layer_50e6712318746e8d92f254629f0202fa = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -95,17 +95,48 @@
             );
         
     
-            tile_layer_a25e259a2ffad0acd094fa1358cabbd9.addTo(map_ea8f152aa38e767f76424916f1b35926);
+            tile_layer_50e6712318746e8d92f254629f0202fa.addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
         
     
-            var marker_6a7289f3f4a85848979e3d84ef425a18 = L.marker(
+            var marker_6fc6e4b2a5475f1304e2632a18988edf = L.marker(
+                [-6.9175, 107.6191],
+                {
+}
+            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
+        
+    
+            var icon_a4a9d08d98da22ed9a620c6b119f50fd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_6fc6e4b2a5475f1304e2632a18988edf.bindTooltip(
+                `<div>
+                     Lokasi Anda
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6fc6e4b2a5475f1304e2632a18988edf.setIcon(icon_a4a9d08d98da22ed9a620c6b119f50fd);
+            
+    
+            var marker_aa3121098c0024b2cbc2c0b1977a2ca1 = L.marker(
                 [-6.91460502, 107.5958065],
                 {
 }
-            ).addTo(map_ea8f152aa38e767f76424916f1b35926);
+            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
         
     
-            var icon_82c136fb4e55ed10843dffdef3abec36 = L.AwesomeMarkers.icon(
+            var icon_3c274ecf5115fe79ccd0b8dbc43fe175 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "black",
   "iconColor": "white",
@@ -116,44 +147,34 @@
             );
         
     
-        var popup_f97b79b2e4be1256bcac0d140a6679ee = L.popup({
-  "maxWidth": 250,
+        var popup_6e9ae068bc7044cbed303d58ebc49eb0 = L.popup({
+  "maxWidth": "100%",
 });
 
         
             
-                var html_5757b07f9441ae09dc80bde1efd6c9bf = $(`<div id="html_5757b07f9441ae09dc80bde1efd6c9bf" style="width: 100.0%; height: 100.0%;">             <div style="width: 200px; font-family: Arial;">                 <b>Sephora 23 Paskal</b><br>                 Rating: 4.81 <span style="color: #fbbc04;">★★★★</span><span style="color: #ccc;">★</span><br><br>                 <b>7 Produk Best Seller:</b><br>                 1. Yves Saint Laurent Touche Éclat Glow-Pact Cushion<br>2. LANEIGE Glaze Craze Tinted Lip Serum<br>3. BILLIE ELISH Eilish Eau De Parfum<br>4. DIOR Backstage Rosy Glow Blush<br>5. NATASHA DENONA Eye Sculpt Eyeshadow Palette<br>6. MAC COSMETICS M•A•Cximal Silky Matte Lipstick<br>7. SOL DE JANEIRO Body Badalada Vitamin-Infused Lotion<br>             </div>             </div>`)[0];
-                popup_f97b79b2e4be1256bcac0d140a6679ee.setContent(html_5757b07f9441ae09dc80bde1efd6c9bf);
+                var html_930a8e1179aa5bd15c5967d8943d5d65 = $(`<div id="html_930a8e1179aa5bd15c5967d8943d5d65" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sephora 23 Paskal</b><br>             ⭐ Rating: 4.81<br>             📏 Jarak: 2.59 km<br><br>             <b>Best Seller:</b><br>1. Yves Saint Laurent Touche Éclat Glow-Pact Cushion<br>2. LANEIGE Glaze Craze Tinted Lip Serum<br>3. BILLIE ELISH Eilish Eau De Parfum<br>4. DIOR Backstage Rosy Glow Blush<br>5. NATASHA DENONA Eye Sculpt Eyeshadow Palette<br>6. MAC COSMETICS M•A•Cximal Silky Matte Lipstick<br>7. SOL DE JANEIRO Body Badalada Vitamin-Infused Lotion<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.91460502,107.5958065" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
+                popup_6e9ae068bc7044cbed303d58ebc49eb0.setContent(html_930a8e1179aa5bd15c5967d8943d5d65);
             
         
 
-        marker_6a7289f3f4a85848979e3d84ef425a18.bindPopup(popup_f97b79b2e4be1256bcac0d140a6679ee)
+        marker_aa3121098c0024b2cbc2c0b1977a2ca1.bindPopup(popup_6e9ae068bc7044cbed303d58ebc49eb0)
         ;
 
         
     
     
-            marker_6a7289f3f4a85848979e3d84ef425a18.bindTooltip(
-                `<div>
-                     Sephora 23 Paskal
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_6a7289f3f4a85848979e3d84ef425a18.setIcon(icon_82c136fb4e55ed10843dffdef3abec36);
+                marker_aa3121098c0024b2cbc2c0b1977a2ca1.setIcon(icon_3c274ecf5115fe79ccd0b8dbc43fe175);
             
     
-            var marker_8ee728c40e1c4fd476fd1f91f6779a02 = L.marker(
+            var marker_4a23efb105f4a63978844113514eb70c = L.marker(
                 [-6.887791584, 107.59593050000001],
                 {
 }
-            ).addTo(map_ea8f152aa38e767f76424916f1b35926);
+            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
         
     
-            var icon_0077054f0d371327281c8cd9981724b8 = L.AwesomeMarkers.icon(
+            var icon_ab344f5098b16e34bddbd09d120f4406 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "black",
   "iconColor": "white",
@@ -164,44 +185,34 @@
             );
         
     
-        var popup_72dc33499f48319b373fad06c0016f96 = L.popup({
-  "maxWidth": 250,
+        var popup_002dfe55df6c76121935830494a791b9 = L.popup({
+  "maxWidth": "100%",
 });
 
         
             
-                var html_364e6296ff64105c3b4a9a5cd1206dd4 = $(`<div id="html_364e6296ff64105c3b4a9a5cd1206dd4" style="width: 100.0%; height: 100.0%;">             <div style="width: 200px; font-family: Arial;">                 <b>Sephora Paris Van Java</b><br>                 Rating: 4.69 <span style="color: #fbbc04;">★★★★</span><span style="color: #ccc;">★</span><br><br>                 <b>7 Produk Best Seller:</b><br>                 1. HUDA Beauty Easy Bake Loose Powder<br>2. RARE Beauty Soft Pinch Liquid Blush<br>3. BILLIE ELISH Eilish Eau De Parfum<br>4. BOBBI BROWN Vitamin Enriche Face Base<br>5. DIOR Backstage Rosy Glow Blush<br>6. MAC COSMETICS M•A•Cximal Silky Matte Lipstick<br>7. SOL DE JANEIRO Body Badalada Vitamin-Infused Lotion<br>             </div>             </div>`)[0];
-                popup_72dc33499f48319b373fad06c0016f96.setContent(html_364e6296ff64105c3b4a9a5cd1206dd4);
+                var html_5f9c5e05ac582271b07b101986b0dfc5 = $(`<div id="html_5f9c5e05ac582271b07b101986b0dfc5" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sephora Paris Van Java</b><br>             ⭐ Rating: 4.69<br>             📏 Jarak: 4.16 km<br><br>             <b>Best Seller:</b><br>1. HUDA Beauty Easy Bake Loose Powder<br>2. RARE Beauty Soft Pinch Liquid Blush<br>3. BILLIE ELISH Eilish Eau De Parfum<br>4. BOBBI BROWN Vitamin Enriche Face Base<br>5. DIOR Backstage Rosy Glow Blush<br>6. MAC COSMETICS M•A•Cximal Silky Matte Lipstick<br>7. SOL DE JANEIRO Body Badalada Vitamin-Infused Lotion<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.887891584,107.5958305" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
+                popup_002dfe55df6c76121935830494a791b9.setContent(html_5f9c5e05ac582271b07b101986b0dfc5);
             
         
 
-        marker_8ee728c40e1c4fd476fd1f91f6779a02.bindPopup(popup_72dc33499f48319b373fad06c0016f96)
+        marker_4a23efb105f4a63978844113514eb70c.bindPopup(popup_002dfe55df6c76121935830494a791b9)
         ;
 
         
     
     
-            marker_8ee728c40e1c4fd476fd1f91f6779a02.bindTooltip(
-                `<div>
-                     Sephora Paris Van Java
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_8ee728c40e1c4fd476fd1f91f6779a02.setIcon(icon_0077054f0d371327281c8cd9981724b8);
+                marker_4a23efb105f4a63978844113514eb70c.setIcon(icon_ab344f5098b16e34bddbd09d120f4406);
             
     
-            var marker_9a44628fe1dee33c76fb7ab63a540f38 = L.marker(
+            var marker_816b73e22fdde8d6646587c7d5d6d02f = L.marker(
                 [-6.954833396, 107.6987416],
                 {
 }
-            ).addTo(map_ea8f152aa38e767f76424916f1b35926);
+            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
         
     
-            var icon_ecd5594fc3f5aba7b4393d81d5324e81 = L.AwesomeMarkers.icon(
+            var icon_f5379f024027b73a9d29b8e33f6c0c60 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "black",
   "iconColor": "white",
@@ -212,44 +223,34 @@
             );
         
     
-        var popup_6aca88df4f910c267692efd8c1ff1334 = L.popup({
-  "maxWidth": 250,
+        var popup_0bb279471ab8262ecc67b808faa466f7 = L.popup({
+  "maxWidth": "100%",
 });
 
         
             
-                var html_febb5a1ea694939aa7b7e4bc0d69f4ee = $(`<div id="html_febb5a1ea694939aa7b7e4bc0d69f4ee" style="width: 100.0%; height: 100.0%;">             <div style="width: 200px; font-family: Arial;">                 <b>Sephora Summarecon Mall Bandung</b><br>                 Rating: 4.67 <span style="color: #fbbc04;">★★★★</span><span style="color: #ccc;">★</span><br><br>                 <b>7 Produk Best Seller:</b><br>                 1. Yves Saint Laurent Touche Éclat Glow-Pact Cushion<br>2. LANEIGE Glaze Craze Tinted Lip Serum<br>3. FRES Kombuca Facial Treatment Essence<br>4. BOBBI BROWN Vitamin Enriche Face Base<br>5. DIOR Backstage Rosy Glow Blush<br>6. NATASHA DENONA Eye Sculpt Eyeshadow Palette<br>7. SOL DE JANEIRO Body Badalada Vitamin-Infused Lotion<br>             </div>             </div>`)[0];
-                popup_6aca88df4f910c267692efd8c1ff1334.setContent(html_febb5a1ea694939aa7b7e4bc0d69f4ee);
+                var html_9eadc113825ee3e9b067e60ff8c20876 = $(`<div id="html_9eadc113825ee3e9b067e60ff8c20876" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sephora Summarecon Mall Bandung</b><br>             ⭐ Rating: 4.67<br>             📏 Jarak: 9.71 km<br><br>             <b>Best Seller:</b><br>1. Yves Saint Laurent Touche Éclat Glow-Pact Cushion<br>2. LANEIGE Glaze Craze Tinted Lip Serum<br>3. FRES Kombuca Facial Treatment Essence<br>4. BOBBI BROWN Vitamin Enriche Face Base<br>5. DIOR Backstage Rosy Glow Blush<br>6. NATASHA DENONA Eye Sculpt Eyeshadow Palette<br>7. SOL DE JANEIRO Body Badalada Vitamin-Infused Lotion<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.955033396,107.6985416" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
+                popup_0bb279471ab8262ecc67b808faa466f7.setContent(html_9eadc113825ee3e9b067e60ff8c20876);
             
         
 
-        marker_9a44628fe1dee33c76fb7ab63a540f38.bindPopup(popup_6aca88df4f910c267692efd8c1ff1334)
+        marker_816b73e22fdde8d6646587c7d5d6d02f.bindPopup(popup_0bb279471ab8262ecc67b808faa466f7)
         ;
 
         
     
     
-            marker_9a44628fe1dee33c76fb7ab63a540f38.bindTooltip(
-                `<div>
-                     Sephora Summarecon Mall Bandung
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_9a44628fe1dee33c76fb7ab63a540f38.setIcon(icon_ecd5594fc3f5aba7b4393d81d5324e81);
+                marker_816b73e22fdde8d6646587c7d5d6d02f.setIcon(icon_f5379f024027b73a9d29b8e33f6c0c60);
             
     
-            var marker_5ae08cda6ef775adf0607f135f68c746 = L.marker(
+            var marker_b09ad77d1670785f637086cbd5e09157 = L.marker(
                 [-6.91430502, 107.59610649999999],
                 {
 }
-            ).addTo(map_ea8f152aa38e767f76424916f1b35926);
+            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
         
     
-            var icon_f4102a1fa4b73c35c357d8e72a712cd3 = L.AwesomeMarkers.icon(
+            var icon_61068b156071f80c852effa6c42d78f3 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "pink",
   "iconColor": "white",
@@ -260,44 +261,34 @@
             );
         
     
-        var popup_147a086649f6cfc7afc0fc4e65dc6fc9 = L.popup({
-  "maxWidth": 250,
+        var popup_765ced457c252bbacf8060668e7560e3 = L.popup({
+  "maxWidth": "100%",
 });
 
         
             
-                var html_137e62724b622f36645928e49c9c07a5 = $(`<div id="html_137e62724b622f36645928e49c9c07a5" style="width: 100.0%; height: 100.0%;">             <div style="width: 200px; font-family: Arial;">                 <b>Sociolla 23 Paskal</b><br>                 Rating: 4.81 <span style="color: #fbbc04;">★★★★</span><span style="color: #ccc;">★</span><br><br>                 <b>7 Produk Best Seller:</b><br>                 1. Neo Cushion Mewy<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. I'm From Black Rice Toner<br>4. Finally Found You SOY BRIGHT! Moisturizer<br>5. Wonder Crush Serum Liquid Blush<br>6. Superstay Vinyl Ink Tint<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br>             </div>             </div>`)[0];
-                popup_147a086649f6cfc7afc0fc4e65dc6fc9.setContent(html_137e62724b622f36645928e49c9c07a5);
+                var html_ec6045478e159bbe7b9f9347c859b918 = $(`<div id="html_ec6045478e159bbe7b9f9347c859b918" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla 23 Paskal</b><br>             ⭐ Rating: 4.81<br>             📏 Jarak: 2.59 km<br><br>             <b>Best Seller:</b><br>1. Neo Cushion Mewy<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. I'm From Black Rice Toner<br>4. Finally Found You SOY BRIGHT! Moisturizer<br>5. Wonder Crush Serum Liquid Blush<br>6. Superstay Vinyl Ink Tint<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.91460502,107.5958065" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
+                popup_765ced457c252bbacf8060668e7560e3.setContent(html_ec6045478e159bbe7b9f9347c859b918);
             
         
 
-        marker_5ae08cda6ef775adf0607f135f68c746.bindPopup(popup_147a086649f6cfc7afc0fc4e65dc6fc9)
+        marker_b09ad77d1670785f637086cbd5e09157.bindPopup(popup_765ced457c252bbacf8060668e7560e3)
         ;
 
         
     
     
-            marker_5ae08cda6ef775adf0607f135f68c746.bindTooltip(
-                `<div>
-                     Sociolla 23 Paskal
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_5ae08cda6ef775adf0607f135f68c746.setIcon(icon_f4102a1fa4b73c35c357d8e72a712cd3);
+                marker_b09ad77d1670785f637086cbd5e09157.setIcon(icon_61068b156071f80c852effa6c42d78f3);
             
     
-            var marker_da48ff06e91bd02f9cdc785ea41f96a1 = L.marker(
+            var marker_03b905e88971180985eea07ba63acdae = L.marker(
                 [-6.892586875, 107.5857968],
                 {
 }
-            ).addTo(map_ea8f152aa38e767f76424916f1b35926);
+            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
         
     
-            var icon_fbca6adb51ec96d97f0bdc3cc5306ddd = L.AwesomeMarkers.icon(
+            var icon_e2bc8378c433cd3a58d7f1484687c68e = L.AwesomeMarkers.icon(
                 {
   "markerColor": "pink",
   "iconColor": "white",
@@ -308,44 +299,34 @@
             );
         
     
-        var popup_40bf4ae52c0f258ce423318e16734dda = L.popup({
-  "maxWidth": 250,
+        var popup_c61b3aec9e7a9bb3139a8f27f82e0551 = L.popup({
+  "maxWidth": "100%",
 });
 
         
             
-                var html_4017a9317b3c7bd12043861b1a3143cf = $(`<div id="html_4017a9317b3c7bd12043861b1a3143cf" style="width: 100.0%; height: 100.0%;">             <div style="width: 200px; font-family: Arial;">                 <b>Sociolla D'Botanica Bandung</b><br>                 Rating: 4.82 <span style="color: #fbbc04;">★★★★</span><span style="color: #ccc;">★</span><br><br>                 <b>7 Produk Best Seller:</b><br>                 1. Neo Cushion Mewy<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. I'm From Black Rice Toner<br>4. Finally Found You SOY BRIGHT! Moisturizer<br>5. Wonder Crush Serum Liquid Blush<br>6. Superstay Vinyl Ink Tint<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br>             </div>             </div>`)[0];
-                popup_40bf4ae52c0f258ce423318e16734dda.setContent(html_4017a9317b3c7bd12043861b1a3143cf);
+                var html_8d1af39606347dd1c3cf352b05430d4d = $(`<div id="html_8d1af39606347dd1c3cf352b05430d4d" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla D'Botanica Bandung</b><br>             ⭐ Rating: 4.82<br>             📏 Jarak: 4.61 km<br><br>             <b>Best Seller:</b><br>1. Neo Cushion Mewy<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. I'm From Black Rice Toner<br>4. Finally Found You SOY BRIGHT! Moisturizer<br>5. Wonder Crush Serum Liquid Blush<br>6. Superstay Vinyl Ink Tint<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.892986875,107.5853968" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
+                popup_c61b3aec9e7a9bb3139a8f27f82e0551.setContent(html_8d1af39606347dd1c3cf352b05430d4d);
             
         
 
-        marker_da48ff06e91bd02f9cdc785ea41f96a1.bindPopup(popup_40bf4ae52c0f258ce423318e16734dda)
+        marker_03b905e88971180985eea07ba63acdae.bindPopup(popup_c61b3aec9e7a9bb3139a8f27f82e0551)
         ;
 
         
     
     
-            marker_da48ff06e91bd02f9cdc785ea41f96a1.bindTooltip(
-                `<div>
-                     Sociolla D'Botanica Bandung
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_da48ff06e91bd02f9cdc785ea41f96a1.setIcon(icon_fbca6adb51ec96d97f0bdc3cc5306ddd);
+                marker_03b905e88971180985eea07ba63acdae.setIcon(icon_e2bc8378c433cd3a58d7f1484687c68e);
             
     
-            var marker_bbafe2f90580841beb2391e2a6704c92 = L.marker(
+            var marker_2656c410868aa9e342dc1d693ad77cc0 = L.marker(
                 [-6.92896318, 107.5867483],
                 {
 }
-            ).addTo(map_ea8f152aa38e767f76424916f1b35926);
+            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
         
     
-            var icon_fc6eb6b71c3cb6a20c7e76f0b17e9a2b = L.AwesomeMarkers.icon(
+            var icon_50d37280419b8304b0729d03fc56908d = L.AwesomeMarkers.icon(
                 {
   "markerColor": "pink",
   "iconColor": "white",
@@ -356,44 +337,34 @@
             );
         
     
-        var popup_35a090885e0b5fa3203f34cf538bf5e4 = L.popup({
-  "maxWidth": 250,
+        var popup_99d939e4d578c84ed70ad2821edd145c = L.popup({
+  "maxWidth": "100%",
 });
 
         
             
-                var html_bdfa8557f228459bff4b26a92586ca87 = $(`<div id="html_bdfa8557f228459bff4b26a92586ca87" style="width: 100.0%; height: 100.0%;">             <div style="width: 200px; font-family: Arial;">                 <b>Sociolla Festival Citylink</b><br>                 Rating: 4.85 <span style="color: #fbbc04;">★★★★</span><span style="color: #ccc;">★</span><br><br>                 <b>7 Produk Best Seller:</b><br>                 1. Neo Cushion Mewy<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. I'm From Black Rice Toner<br>4. Finally Found You SOY BRIGHT! Moisturizer<br>5. Wonder Crush Serum Liquid Blush<br>6. Superstay Vinyl Ink Tint<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br>             </div>             </div>`)[0];
-                popup_35a090885e0b5fa3203f34cf538bf5e4.setContent(html_bdfa8557f228459bff4b26a92586ca87);
+                var html_7bd343f0b97fbea3e35fadf421149f20 = $(`<div id="html_7bd343f0b97fbea3e35fadf421149f20" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla Festival Citylink</b><br>             ⭐ Rating: 4.85<br>             📏 Jarak: 3.86 km<br><br>             <b>Best Seller:</b><br>1. Neo Cushion Mewy<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. I'm From Black Rice Toner<br>4. Finally Found You SOY BRIGHT! Moisturizer<br>5. Wonder Crush Serum Liquid Blush<br>6. Superstay Vinyl Ink Tint<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.92946318,107.5862483" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
+                popup_99d939e4d578c84ed70ad2821edd145c.setContent(html_7bd343f0b97fbea3e35fadf421149f20);
             
         
 
-        marker_bbafe2f90580841beb2391e2a6704c92.bindPopup(popup_35a090885e0b5fa3203f34cf538bf5e4)
+        marker_2656c410868aa9e342dc1d693ad77cc0.bindPopup(popup_99d939e4d578c84ed70ad2821edd145c)
         ;
 
         
     
     
-            marker_bbafe2f90580841beb2391e2a6704c92.bindTooltip(
-                `<div>
-                     Sociolla Festival Citylink
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_bbafe2f90580841beb2391e2a6704c92.setIcon(icon_fc6eb6b71c3cb6a20c7e76f0b17e9a2b);
+                marker_2656c410868aa9e342dc1d693ad77cc0.setIcon(icon_50d37280419b8304b0729d03fc56908d);
             
     
-            var marker_1fadc24230386c158945a1e05b176eb2 = L.marker(
+            var marker_58df7e66c2865aabb775443f1dd9fbf5 = L.marker(
                 [-6.954433396, 107.6991416],
                 {
 }
-            ).addTo(map_ea8f152aa38e767f76424916f1b35926);
+            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
         
     
-            var icon_ddbd3a71969d6d793b4e973c2d256d2b = L.AwesomeMarkers.icon(
+            var icon_6effbe931eec781f748471e6281d0bf7 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "pink",
   "iconColor": "white",
@@ -404,44 +375,34 @@
             );
         
     
-        var popup_e6dd51a5065d1c8d87948d8862f29367 = L.popup({
-  "maxWidth": 250,
+        var popup_ebe1518951f2c9bb6318915229c2e128 = L.popup({
+  "maxWidth": "100%",
 });
 
         
             
-                var html_458e6c65b6c3d11993ebaac13a10a4df = $(`<div id="html_458e6c65b6c3d11993ebaac13a10a4df" style="width: 100.0%; height: 100.0%;">             <div style="width: 200px; font-family: Arial;">                 <b>Sociolla Summarecon Mall Bandung</b><br>                 Rating: 4.82 <span style="color: #fbbc04;">★★★★</span><span style="color: #ccc;">★</span><br><br>                 <b>7 Produk Best Seller:</b><br>                 1. Neo Cushion Mewy<br>2. I'm From Black Rice Toner<br>3. Wonder Crush Serum Liquid Blush<br>4. Superstay Vinyl Ink Tint<br>5. Microblur Translucent Loose Powder<br>6. Powerstay Transferproof Matte Lip Cream<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br>             </div>             </div>`)[0];
-                popup_e6dd51a5065d1c8d87948d8862f29367.setContent(html_458e6c65b6c3d11993ebaac13a10a4df);
+                var html_8e0e04017563a0024a7e2e125145d93d = $(`<div id="html_8e0e04017563a0024a7e2e125145d93d" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla Summarecon Mall Bandung</b><br>             ⭐ Rating: 4.82<br>             📏 Jarak: 9.71 km<br><br>             <b>Best Seller:</b><br>1. Neo Cushion Mewy<br>2. I'm From Black Rice Toner<br>3. Wonder Crush Serum Liquid Blush<br>4. Superstay Vinyl Ink Tint<br>5. Microblur Translucent Loose Powder<br>6. Powerstay Transferproof Matte Lip Cream<br>7. Mother Of Pearl Microblur Translucent Loose Powder<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.955033396,107.6985416" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
+                popup_ebe1518951f2c9bb6318915229c2e128.setContent(html_8e0e04017563a0024a7e2e125145d93d);
             
         
 
-        marker_1fadc24230386c158945a1e05b176eb2.bindPopup(popup_e6dd51a5065d1c8d87948d8862f29367)
+        marker_58df7e66c2865aabb775443f1dd9fbf5.bindPopup(popup_ebe1518951f2c9bb6318915229c2e128)
         ;
 
         
     
     
-            marker_1fadc24230386c158945a1e05b176eb2.bindTooltip(
-                `<div>
-                     Sociolla Summarecon Mall Bandung
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_1fadc24230386c158945a1e05b176eb2.setIcon(icon_ddbd3a71969d6d793b4e973c2d256d2b);
+                marker_58df7e66c2865aabb775443f1dd9fbf5.setIcon(icon_6effbe931eec781f748471e6281d0bf7);
             
     
-            var marker_da4210e7168deafb1337da640f2c5069 = L.marker(
+            var marker_787eed2ef3ad4704e1d51afc0f1baccb = L.marker(
                 [-6.9259705359999995, 107.6359191],
                 {
 }
-            ).addTo(map_ea8f152aa38e767f76424916f1b35926);
+            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
         
     
-            var icon_398a64076b76a894f1da9b58deab2157 = L.AwesomeMarkers.icon(
+            var icon_a5c7144f504feb4ee7e95201597469df = L.AwesomeMarkers.icon(
                 {
   "markerColor": "pink",
   "iconColor": "white",
@@ -452,44 +413,34 @@
             );
         
     
-        var popup_005c16fcddcf0444989a753b422da6e9 = L.popup({
-  "maxWidth": 250,
+        var popup_9fb27f4e12b709b33c0de469f5d74aa6 = L.popup({
+  "maxWidth": "100%",
 });
 
         
             
-                var html_123751cc132ff1e8dd94947b37640f96 = $(`<div id="html_123751cc132ff1e8dd94947b37640f96" style="width: 100.0%; height: 100.0%;">             <div style="width: 200px; font-family: Arial;">                 <b>Sociolla Transtudio Mall Bandung</b><br>                 Rating: 4.82 <span style="color: #fbbc04;">★★★★</span><span style="color: #ccc;">★</span><br><br>                 <b>7 Produk Best Seller:</b><br>                 1. Neo Cushion Mewy<br>2. I'm From Black Rice Toner<br>3. Wonder Crush Serum Liquid Blush<br>4. Superstay Vinyl Ink Tint<br>5. Microblur Translucent Loose Powder<br>6. Powerstay Transferproof Matte Lip Cream<br>7. Skintific Ultra Cover Powder Foundation<br>             </div>             </div>`)[0];
-                popup_005c16fcddcf0444989a753b422da6e9.setContent(html_123751cc132ff1e8dd94947b37640f96);
+                var html_c8ef7114e2e411e5f548c0ce79ec8046 = $(`<div id="html_c8ef7114e2e411e5f548c0ce79ec8046" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla Transtudio Mall Bandung</b><br>             ⭐ Rating: 4.82<br>             📏 Jarak: 2.05 km<br><br>             <b>Best Seller:</b><br>1. Neo Cushion Mewy<br>2. I'm From Black Rice Toner<br>3. Wonder Crush Serum Liquid Blush<br>4. Superstay Vinyl Ink Tint<br>5. Microblur Translucent Loose Powder<br>6. Powerstay Transferproof Matte Lip Cream<br>7. Skintific Ultra Cover Powder Foundation<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.926670536,107.6352191" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
+                popup_9fb27f4e12b709b33c0de469f5d74aa6.setContent(html_c8ef7114e2e411e5f548c0ce79ec8046);
             
         
 
-        marker_da4210e7168deafb1337da640f2c5069.bindPopup(popup_005c16fcddcf0444989a753b422da6e9)
+        marker_787eed2ef3ad4704e1d51afc0f1baccb.bindPopup(popup_9fb27f4e12b709b33c0de469f5d74aa6)
         ;
 
         
     
     
-            marker_da4210e7168deafb1337da640f2c5069.bindTooltip(
-                `<div>
-                     Sociolla Transtudio Mall Bandung
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_da4210e7168deafb1337da640f2c5069.setIcon(icon_398a64076b76a894f1da9b58deab2157);
+                marker_787eed2ef3ad4704e1d51afc0f1baccb.setIcon(icon_a5c7144f504feb4ee7e95201597469df);
             
     
-            var marker_53ad1e4c8cd6769bd28667a132d35759 = L.marker(
+            var marker_ec97774188995af1a0eb0a2e205992f7 = L.marker(
                 [-6.945821242, 107.6417111],
                 {
 }
-            ).addTo(map_ea8f152aa38e767f76424916f1b35926);
+            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
         
     
-            var icon_34bddbc804907d262c7ec849c9bf20c7 = L.AwesomeMarkers.icon(
+            var icon_446fe12e94a9908f5f1653f1906bfd50 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "pink",
   "iconColor": "white",
@@ -500,44 +451,34 @@
             );
         
     
-        var popup_2fb6b36f0dcaf947d8db734419555f5e = L.popup({
-  "maxWidth": 250,
+        var popup_559dcec0fb6e414f922bb2f91efa5aad = L.popup({
+  "maxWidth": "100%",
 });
 
         
             
-                var html_59797b84d779003f0a8e28e03f2f7aaf = $(`<div id="html_59797b84d779003f0a8e28e03f2f7aaf" style="width: 100.0%; height: 100.0%;">             <div style="width: 200px; font-family: Arial;">                 <b>Sociolla X Tenth Avenue</b><br>                 Rating: 4.8 <span style="color: #fbbc04;">★★★★</span><span style="color: #ccc;">★</span><br><br>                 <b>7 Produk Best Seller:</b><br>                 1. Mediheal Rose Prrn Essential Mask Healthy Glow<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. Finally Found You SOY BRIGHT! Moisturizer<br>4. Wonder Crush Serum Liquid Blush<br>5. Superstay Vinyl Ink Tint<br>6. Microblur Translucent Loose Powder<br>7. Powerstay Transferproof Matte Lip Cream<br>             </div>             </div>`)[0];
-                popup_2fb6b36f0dcaf947d8db734419555f5e.setContent(html_59797b84d779003f0a8e28e03f2f7aaf);
+                var html_7602cbe5c7c844bf6babf911589e223c = $(`<div id="html_7602cbe5c7c844bf6babf911589e223c" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla X Tenth Avenue</b><br>             ⭐ Rating: 4.8<br>             📏 Jarak: 4.02 km<br><br>             <b>Best Seller:</b><br>1. Mediheal Rose Prrn Essential Mask Healthy Glow<br>2. Let It Gow Daily Shine Body Serum Delicate Rose<br>3. Finally Found You SOY BRIGHT! Moisturizer<br>4. Wonder Crush Serum Liquid Blush<br>5. Superstay Vinyl Ink Tint<br>6. Microblur Translucent Loose Powder<br>7. Powerstay Transferproof Matte Lip Cream<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.946621242,107.6409111" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
+                popup_559dcec0fb6e414f922bb2f91efa5aad.setContent(html_7602cbe5c7c844bf6babf911589e223c);
             
         
 
-        marker_53ad1e4c8cd6769bd28667a132d35759.bindPopup(popup_2fb6b36f0dcaf947d8db734419555f5e)
+        marker_ec97774188995af1a0eb0a2e205992f7.bindPopup(popup_559dcec0fb6e414f922bb2f91efa5aad)
         ;
 
         
     
     
-            marker_53ad1e4c8cd6769bd28667a132d35759.bindTooltip(
-                `<div>
-                     Sociolla X Tenth Avenue
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_53ad1e4c8cd6769bd28667a132d35759.setIcon(icon_34bddbc804907d262c7ec849c9bf20c7);
+                marker_ec97774188995af1a0eb0a2e205992f7.setIcon(icon_446fe12e94a9908f5f1653f1906bfd50);
             
     
-            var marker_7813e6017c747f4fdeea81f3664b7e3c = L.marker(
+            var marker_640ea6d69c2d5b392dff5e506231f17b = L.marker(
                 [-6.921875058, 107.6058413],
                 {
 }
-            ).addTo(map_ea8f152aa38e767f76424916f1b35926);
+            ).addTo(map_50993c4e057bae2d4ed61d6cfa87ed71);
         
     
-            var icon_ee0d06b4c14ae7c106e687bee554964e = L.AwesomeMarkers.icon(
+            var icon_e6e3622d62e82091474922e3875190e1 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "pink",
   "iconColor": "white",
@@ -548,34 +489,24 @@
             );
         
     
-        var popup_b58d7360ff7bb9c110d61f4932c577a6 = L.popup({
-  "maxWidth": 250,
+        var popup_3c2b25261aad1ce2d08fba8cfc66def5 = L.popup({
+  "maxWidth": "100%",
 });
 
         
             
-                var html_ba356d27a9124013268324bcfe9ce931 = $(`<div id="html_ba356d27a9124013268324bcfe9ce931" style="width: 100.0%; height: 100.0%;">             <div style="width: 200px; font-family: Arial;">                 <b>Sociolla X The Kings Shopping Centre</b><br>                 Rating: 4.79 <span style="color: #fbbc04;">★★★★</span><span style="color: #ccc;">★</span><br><br>                 <b>7 Produk Best Seller:</b><br>                 1. Mediheal Rose Prrn Essential Mask Healthy Glow<br>2. Finally Found You SOY BRIGHT! Moisturizer<br>3. Jung Saem Mool Essential Skin Nuder Cushion<br>4. Derma Crush Serum Liquid Blush <br>5. Wonder Crush Serum Liquid Blush<br>6. Microblur Translucent Loose Powder<br>7. Powerstay Transferproof Matte Lip Cream<br>             </div>             </div>`)[0];
-                popup_b58d7360ff7bb9c110d61f4932c577a6.setContent(html_ba356d27a9124013268324bcfe9ce931);
+                var html_ca974775dea61c68224167f2a812fa35 = $(`<div id="html_ca974775dea61c68224167f2a812fa35" style="width: 100.0%; height: 100.0%;">         <div style="font-size:13px">             <b>Sociolla X The Kings Shopping Centre</b><br>             ⭐ Rating: 4.79<br>             📏 Jarak: 1.67 km<br><br>             <b>Best Seller:</b><br>1. Mediheal Rose Prrn Essential Mask Healthy Glow<br>2. Finally Found You SOY BRIGHT! Moisturizer<br>3. Jung Saem Mool Essential Skin Nuder Cushion<br>4. Derma Crush Serum Liquid Blush <br>5. Wonder Crush Serum Liquid Blush<br>6. Microblur Translucent Loose Powder<br>7. Powerstay Transferproof Matte Lip Cream<br><br>             <a href="https://www.google.com/maps/dir/?api=1&destination=-6.922775058,107.6049413" target="_blank">📍 Buka di Google Maps</a>         </div>         </div>`)[0];
+                popup_3c2b25261aad1ce2d08fba8cfc66def5.setContent(html_ca974775dea61c68224167f2a812fa35);
             
         
 
-        marker_7813e6017c747f4fdeea81f3664b7e3c.bindPopup(popup_b58d7360ff7bb9c110d61f4932c577a6)
+        marker_640ea6d69c2d5b392dff5e506231f17b.bindPopup(popup_3c2b25261aad1ce2d08fba8cfc66def5)
         ;
 
         
     
     
-            marker_7813e6017c747f4fdeea81f3664b7e3c.bindTooltip(
-                `<div>
-                     Sociolla X The Kings Shopping Centre
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_7813e6017c747f4fdeea81f3664b7e3c.setIcon(icon_ee0d06b4c14ae7c106e687bee554964e);
+                marker_640ea6d69c2d5b392dff5e506231f17b.setIcon(icon_e6e3622d62e82091474922e3875190e1);
             
 </script>
 </html>
