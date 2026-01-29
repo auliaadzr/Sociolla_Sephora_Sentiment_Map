@@ -3,67 +3,85 @@ import matplotlib.pyplot as plt
 import os
 
 def main():
-    # KONFIGURASI PATH 
+    # KONFIGURASI PATH
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     importPath = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaning.csv")
-    exportPath = os.path.join(BASE_DIR, "Data", "Visualisasi", "perbandingan_kepuasan_outlet.png")
+    exportPath = os.path.join(BASE_DIR, "Data", "Visualisasi", "kepuasan_rata_rata_outlet.png")
 
     try:
-        # BACA DATA
+        # LOAD DATA
         df = pd.read_csv(importPath)
 
-        # ULASAN POSITIF 
-        kata_positif = ['bagus', 'puas', 'enak', 'suka', 'mantap', 'recomended', 'cocok', 'love', 'best', 
-                        'original', 'keren', 'ramah', 'good', 'nice', 'recommended', 'terbaik']
+        # DEFINISI ULASAN POSITIF
+        kata_positif = [
+            'bagus', 'puas', 'enak', 'suka', 'mantap', 'recommended',
+            'recomended', 'cocok', 'love', 'best', 'original',
+            'keren', 'ramah', 'good', 'nice', 'terbaik'
+        ]
 
         def is_positif(teks):
             teks = str(teks).lower()
             return any(kata in teks for kata in kata_positif)
 
-        df_positif = df[df['review'].apply(is_positif)].copy()
+        df['positif'] = df['review'].apply(is_positif)
 
-        # Menghapus spasi dan memastikan format 'Sociolla' / 'Sephora'
-        df_positif['e-commere'] = df_positif['e-commere'].str.strip().str.capitalize()
-        counts = df_positif['e-commere'].value_counts()
+        # NORMALISASI BRAND
+        df['e-commere'] = df['e-commere'].str.strip().str.capitalize()
 
-        # VISUALISASI PIE CHART 
-        plt.figure(figsize=(10, 8))
+        # PROPORSI POSITIF PER OUTLET
+        outlet_stats = (
+            df
+            .groupby(['Outlet', 'e-commere'])['positif']
+            .mean()
+            .reset_index()
+        )
 
-        # Mapping warna 
+        # RATA-RATA KEPUASAN PER BRAND
+        brand_avg = (
+            outlet_stats
+            .groupby('e-commere')['positif']
+            .mean()
+        )
+
+        # VISUALISASI PIE CHART
+        plt.figure(figsize=(8, 8))
+
         color_map = {
-            'Sociolla': '#FF69B4', 
-            'Sephora': '#4F4F4F'   
+            'Sociolla': '#FF69B4',  # Pink
+            'Sephora': '#4F4F4F'    # Abu-abu tua
         }
 
-        # Mengambil warna 
-        current_colors = [color_map.get(brand, '#D3D3D3') for brand in counts.index]
+        colors = [color_map.get(b, '#D3D3D3') for b in brand_avg.index]
 
         plt.pie(
-            counts, 
-            labels=counts.index, 
-            autopct='%1.1f%%', 
-            startangle=140, 
-            colors=current_colors,
-            explode=[0.05 if i == 0 else 0 for i in range(len(counts))], 
+            brand_avg,
+            labels=brand_avg.index,
+            autopct='%1.1f%%',
+            startangle=140,
+            colors=colors,
+            explode=[0.05] * len(brand_avg),
             shadow=True
         )
 
-        plt.title('Dominasi Kepuasan Pelanggan: Sociolla vs Sephora\n(Berdasarkan Proporsi Ulasan Positif)', 
-                  fontsize=14, fontweight='bold')
+        plt.title(
+            'Perbandingan Kepuasan Rata-rata Outlet\nSociolla vs Sephora',
+            fontsize=14,
+            fontweight='bold'
+        )
 
-        # SIMPAN HASIL
         plt.tight_layout()
-        if not os.path.exists(os.path.dirname(exportPath)):
-            os.makedirs(os.path.dirname(exportPath))
-        plt.savefig(exportPath, dpi=300)
 
-        print(f"Visualisasi Berhasil!")
-        print(f"Detail Statistik: {counts.to_dict()}")
+        # SIMPAN FILE
+        os.makedirs(os.path.dirname(exportPath), exist_ok=True)
+        plt.savefig(exportPath, dpi=300)
         plt.close()
 
-    except Exception as e:
-        print(f"Terjadi kesalahan visualisasi: {e}")
+        print("📊 Pie chart rata-rata kepuasan per brand:")
+        print(brand_avg)
 
-# JIKA FILE DIJALANKAN LANGSUNG
+    except Exception as e:
+        print(f"❌ Terjadi kesalahan: {e}")
+
+# MAIN
 if __name__ == "__main__":
     main()

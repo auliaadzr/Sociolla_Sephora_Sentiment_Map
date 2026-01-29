@@ -69,7 +69,7 @@ elif selected == "Scraping":
     )
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    scraping_path = os.path.join(BASE_DIR, "Data", "Raw", "data_scrapping.csv")
+    scraping_path = os.path.join(BASE_DIR, "Data", "Raw", "data_scraping.csv")
 
     # ambil / update data
     if st.button("🔄 Ambil / Perbarui Data Scraping Terbaru"):
@@ -91,7 +91,7 @@ elif selected == "Scraping":
         st.download_button(
             label="⬇️ Download Data Scraping",
             data=df_scrap.to_csv(index=False),
-            file_name="data_scrapping.csv",
+            file_name="data_scraping.csv",
             mime="text/csv"
         )
 
@@ -110,7 +110,7 @@ elif selected == "Cleaning":
     )
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    raw_path = os.path.join(BASE_DIR, "Data", "Raw", "data_scrapping.csv")
+    raw_path = os.path.join(BASE_DIR, "Data", "Raw", "data_scraping.csv")
     clean_path = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaning.csv")
 
     # Tombol SELALU ADA
@@ -190,7 +190,7 @@ elif selected == "Rating Outlet":
 # ======================
 elif selected == "Pie Chart":
     pie_chart.main()
-    st.image("Data/Visualisasi/perbandingan_kepuasan_outlet.png")
+    st.image("Data/Visualisasi/kepuasan_rata_rata_outlet.png")
 
 # ======================
 elif selected == "Bar Chart":
