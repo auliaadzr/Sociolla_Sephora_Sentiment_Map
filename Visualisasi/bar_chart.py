@@ -1,7 +1,7 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import plotly.express as px
 import os
+import streamlit as st
 
 def main():
     # KONFIGURASI PATH
@@ -9,58 +9,61 @@ def main():
     
     # Mengambil data 
     importPath = os.path.join(BASE_DIR, "Data", "Raw", "data_rating_outlet.csv")
-    exportVisualPath = os.path.join(BASE_DIR, "Data", "Visualisasi", "bar_chart_rating.png")
 
     try:
         # BACA DATA
         df = pd.read_csv(importPath)
         
-        # Urutkan berdasarkan rating tertinggi untuk estetika grafik
+        # --- 1. URUTKAN BESAR KE KECIL ---
         df = df.sort_values(by='rating_outlet', ascending=False)
 
-        # SETTING KANVAS GRAFIK
-        plt.figure(figsize=(12, 7))
-        sns.set_style("whitegrid") # Memberi background garis halus
-
         # Penentuan Warna
-        colors = ['#FF69B4' if brand.lower() == 'sociolla' else '#000000' for brand in df['e-commere']]
+        color_map = {'sociolla': '#FF69B4', 'sephora': '#000000'}
 
-        # Membuat Bar Plot
-        plot = sns.barplot(
+        # Membuat Bar Plot Interaktif
+        fig = px.bar(
+            df,
             x='outlet_id', 
-            y='rating_outlet', 
-            data=df, 
-            palette=colors
+            y='rating_outlet',
+            text='rating_outlet',
+            color='e-commere',
+            color_discrete_map=color_map,
+            hover_name='Outlet', 
+            labels={
+                'outlet_id': 'Outlet ID',
+                'rating_outlet': 'Skor Rating',
+                'e-commere': 'Brand'
+            },
         )
 
-        # KUSTOMISASI JUDUL & LABEL
-        plt.title('Peringkat Kepuasan Pelanggan: Sociolla vs Sephora (Bandung)', fontsize=15, fontweight='bold', pad=20)
-        plt.xlabel('Outlet', fontsize=12)
-        plt.ylabel('Skor Rating (Bayesian Average)', fontsize=12)
-        plt.ylim(0, 5.5) # Skala bintang 1-5
+        # --- 2. KUSTOMISASI TEKS DI ATAS BATANG ---
+        fig.update_traces(
+            texttemplate='%{text:.2f}', 
+            textposition='outside',
+            textfont=dict(color='black', size=12),
+            hovertemplate="<b>%{hovertext}</b><extra></extra>"
+        )
 
-        # Menambahkan Label Angka di Atas Setiap Batang
-        for p in plot.patches:
-            plot.annotate(format(p.get_height(), '.2f'), 
-                   (p.get_x() + p.get_width() / 2., p.get_height()), 
-                   ha = 'center', va = 'center', 
-                   xytext = (0, 9), 
-                   textcoords = 'offset points',
-                   fontweight='bold',
-                   fontsize=10)
+        fig.update_layout(
+            plot_bgcolor='white',
+            xaxis={
+                'categoryorder':'total descending',
+                'tickangle': 0,
+                # --- MENGECILKAN UKURAN FONT SUMBU X ---
+                'tickfont': dict(size=9) # Ukuran diperkecil ke 9 agar lebih enak dilihat
+            },
+            yaxis=dict(range=[0, 5.5], gridcolor='lightgrey'),
+            font=dict(family="Arial", size=12),
+            title_font=dict(size=20, family="Arial", color="black"),
+            # Memberi sedikit ruang lebih di bawah agar teks tidak terpotong
+            margin=dict(t=50, b=80) 
+        )
 
-        # SIMPAN HASIL
-        plt.tight_layout()
-        plt.savefig(exportVisualPath, dpi=300)
-        
-        print("-" * 30)
-        print(f"Visualisasi Berhasil!")
-        print(f"Grafik disimpan di: {exportVisualPath}")
-        plt.show()
+        # --- TAMPILKAN DI STREAMLIT ---
+        st.plotly_chart(fig, use_container_width=True)
 
     except Exception as e:
-        print(f"Gagal membuat visualisasi: {e}")
+        st.error(f"Gagal membuat visualisasi: {e}")
 
-# JIKA FILE DIJALANKAN LANGSUNG
 if __name__ == "__main__":
     main()

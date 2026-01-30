@@ -1,18 +1,26 @@
 import pandas as pd
-import matplotlib.pyplot as plt
+import streamlit as st
+import plotly.express as px
 import os
 
+# Konfigurasi Streamlit
+st.set_page_config(page_title="Analisis Kepuasan Brand", layout="wide")
+
 def main():
-    # KONFIGURASI PATH
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    importPath = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaning.csv")
-    exportPath = os.path.join(BASE_DIR, "Data", "Visualisasi", "kepuasan_rata_rata_outlet.png")
+    # 1. PENGATURAN PATH
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(current_dir)
+    importPath = os.path.join(project_root, "Data", "Clean", "data_cleaning.csv")
 
     try:
-        # LOAD DATA
+        if not os.path.exists(importPath):
+            st.error(f"File tidak ditemukan di: {importPath}")
+            return
+
+        # 2. LOAD & PREPARASI DATA
         df = pd.read_csv(importPath)
 
-        # DEFINISI ULASAN POSITIF
+        # Definisi Sentimen Positif
         kata_positif = [
             'bagus', 'puas', 'enak', 'suka', 'mantap', 'recommended',
             'recomended', 'cocok', 'love', 'best', 'original',
@@ -24,64 +32,52 @@ def main():
             return any(kata in teks for kata in kata_positif)
 
         df['positif'] = df['review'].apply(is_positif)
-
-        # NORMALISASI BRAND
         df['e-commere'] = df['e-commere'].str.strip().str.capitalize()
+        
+        # Nama Mall dari kolom Outlet
+        df['Nama_Mall'] = df['Outlet'].str.replace('_', ' ').str.title()
 
-        # PROPORSI POSITIF PER OUTLET
-        outlet_stats = (
-            df
-            .groupby(['Outlet', 'e-commere'])['positif']
-            .mean()
-            .reset_index()
-        )
+        # 3. AGREGASI DATA
+        # Mengumpulkan daftar mall unik untuk ditampilkan di pop-up
+        brand_stats = df.groupby('e-commere').agg(
+            Rata_Kepuasan=('positif', 'mean'),
+            Daftar_Mall=('Nama_Mall', lambda x: "<br>• ".join(x.unique()[:5])) 
+        ).reset_index()
 
-        # RATA-RATA KEPUASAN PER BRAND
-        brand_avg = (
-            outlet_stats
-            .groupby('e-commere')['positif']
-            .mean()
-        )
+        st.title('📊 Perbandingan Kepuasan Rata-rata Brand')
 
-        # VISUALISASI PIE CHART
-        plt.figure(figsize=(8, 8))
-
+        # 4. WARNA (Pink untuk Sociolla, Hitam untuk Sephora)
         color_map = {
-            'Sociolla': '#FF69B4',  # Pink
-            'Sephora': '#4F4F4F'    # Abu-abu tua
+            'Sociolla': '#FF69B4',
+            'Sephora': '#000000'
         }
 
-        colors = [color_map.get(b, '#D3D3D3') for b in brand_avg.index]
-
-        plt.pie(
-            brand_avg,
-            labels=brand_avg.index,
-            autopct='%1.1f%%',
-            startangle=140,
-            colors=colors,
-            explode=[0.05] * len(brand_avg),
-            shadow=True
+        # 5. VISUALISASI PIE CHART (PLOTLY)
+        fig = px.pie(
+            brand_stats,
+            values='Rata_Kepuasan',
+            names='e-commere',
+            color='e-commere',
+            color_discrete_map=color_map,
+            hole=0.3, 
         )
 
-        plt.title(
-            'Perbandingan Kepuasan Rata-rata Outlet\nSociolla vs Sephora',
-            fontsize=14,
-            fontweight='bold'
+        # 6. KUSTOMISASI POP-UP (HOVER) - MENGHAPUS KATA "CONTOH"
+        fig.update_traces(
+            hovertemplate="<b>Brand: %{label}</b><br>Kepuasan: %{percent}<br><br><b>Mall:</b><br>• %{customdata[0]}<extra></extra>",
+            customdata=brand_stats[['Daftar_Mall']]
         )
 
-        plt.tight_layout()
+        fig.update_layout(
+            legend_title="Brand",
+            margin=dict(t=50, b=50, l=0, r=0)
+        )
 
-        # SIMPAN FILE
-        os.makedirs(os.path.dirname(exportPath), exist_ok=True)
-        plt.savefig(exportPath, dpi=300)
-        plt.close()
-
-        print("📊 Pie chart rata-rata kepuasan per brand:")
-        print(brand_avg)
+        # 7. TAMPILKAN KE STREAMLIT
+        st.plotly_chart(fig, use_container_width=True)
 
     except Exception as e:
-        print(f"❌ Terjadi kesalahan: {e}")
+        st.error(f"Terjadi kesalahan: {e}")
 
-# MAIN
 if __name__ == "__main__":
     main()
