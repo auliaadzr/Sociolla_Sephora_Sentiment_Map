@@ -41,7 +41,7 @@ def main():
         # Mengumpulkan daftar mall unik untuk ditampilkan di pop-up
         brand_stats = df.groupby('e-commere').agg(
             Rata_Kepuasan=('positif', 'mean'),
-            Daftar_Mall=('Nama_Mall', lambda x: "<br>• ".join(x.unique()[:5])) 
+            Daftar_Mall=('Nama_Mall', lambda x: "<br>• ".join(x.unique())) 
         ).reset_index()
 
         st.title('📊 Perbandingan Kepuasan Rata-rata Brand')
