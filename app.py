@@ -190,12 +190,10 @@ elif selected == "Rating Outlet":
 # ======================
 elif selected == "Pie Chart":
     pie_chart.main()
-    # st.image("Data/Visualisasi/kepuasan_rata_rata_outlet.png")
 
 # ======================
 elif selected == "Bar Chart":
     bar_chart.main()
-    # st.image("Data/Visualisasi/bar_chart_rating.png")
 
 # ======================
 elif selected == "Peta GIS":
