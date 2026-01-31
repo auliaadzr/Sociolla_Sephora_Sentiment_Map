@@ -45,19 +45,48 @@ with st.sidebar:
         }
     )
 
-st.title("📊 Analisis Kepuasan Pelanggan")
-st.caption("Sociolla vs Sephora – Bandung")
 
 # ======================
 if selected == "Beranda":
+    st.title("💄 Sociolla vs Sephora")
+    st.subheader("Analisis Kepuasan Pelanggan Retail Kecantikan di Bandung")
+
     st.markdown("""
-    Tujuan Aplikasi
-    Aplikasi ini menganalisis kepuasan pelanggan berdasarkan:
-    - Review pelanggan
-    - Bayesian Rating
-    - Visualisasi Grafik
-    - Analisis Spasial (GIS)
+    Aplikasi ini menyajikan analisis kepuasan pelanggan berdasarkan **ulasan nyata konsumen**
+    dengan pendekatan statistik dan visualisasi interaktif untuk memahami performa outlet
+    secara objektif dan informatif.
     """)
+
+    st.markdown("### 🎯 Tujuan Aplikasi")
+    st.markdown("""
+    - Membandingkan tingkat kepuasan pelanggan antara **Sociolla** dan **Sephora**
+    - Menyediakan **rating outlet** yang tidak tersedia di website resmi
+    - Menampilkan hasil analisis secara **visual dan mudah dipahami**
+    """)
+
+    st.markdown("### ✨ Fitur Utama")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("""
+        📝 **Analisis Review Pelanggan**  
+        Mengolah ulasan konsumen sebagai dasar penilaian kepuasan
+        
+        ⭐ **Bayesian Rating Outlet**  
+        Rating outlet yang lebih adil dan stabil
+        """)
+
+    with col2:
+        st.markdown("""
+        📊 **Visualisasi Interaktif**  
+        Pie Chart & Bar Chart untuk perbandingan performa
+        
+        🗺️ **Peta GIS Interaktif**  
+        Lokasi outlet, rating, jarak, dan 7 produk best seller
+        """)
+
+    st.markdown("---")
+    st.caption("Gunakan menu di sebelah kiri untuk mulai menjelajahi hasil analisis ✨")
 
 # ======================
 elif selected == "Scraping":
