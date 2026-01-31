@@ -16,6 +16,8 @@ def main():
     # URUTKAN BESAR KE KECIL 
     df = df.sort_values(by='rating_outlet', ascending=False)
 
+    st.title('📊 Perbandingan Rating Oulet Brand')
+
     # Penentuan Warna
     color_map = {'sociolla': '#FF69B4', 'sephora': '#000000'}
 
