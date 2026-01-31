@@ -1,33 +1,38 @@
 import pandas as pd
 import os
 
-# KONFIGURASI PATH
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+def main():
+    # KONFIGURASI PATH
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# MENGAMBIL DATA DARI HASIL CLEANING 
-importPath = os.path.join(BASE_DIR, "Data", "Clean", "cleaning.csv")
-exportPath = os.path.join(BASE_DIR, "Data", "Raw", "data_rating_outlet.csv")
+    # MENGAMBIL DATA DARI HASIL CLEANING 
+    importPath = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaning.csv")
+    exportPath = os.path.join(BASE_DIR, "Data", "Raw", "data_rating_outlet.csv")
 
 
-df = pd.read_csv(importPath)
+    df = pd.read_csv(importPath)
 
-# PROSES RUMUS BAYESIAN 
-produk_stats = df.groupby(['Outlet', 'outlet_id','e-commere', 'Produk_BestSeller', 'lat', 'lon', 'Rating_global_produk']).agg(
-    Rs=('rating', 'mean'),
-    n=('rating', 'count')
-).reset_index()
+    # PROSES RUMUS BAYESIAN 
+    produk_stats = df.groupby(['Outlet', 'outlet_id','e-commere', 'Produk_BestSeller', 'lat', 'lon', 'Rating_global_produk']).agg(
+        Rs=('rating', 'mean'),
+        n=('rating', 'count')
+    ).reset_index()
 
-k = 5
-produk_stats['P_score'] = (
-    (produk_stats['n'] * produk_stats['Rs']) + (k * produk_stats['Rating_global_produk'])
-) / (produk_stats['n'] + k)
+    k = 5
+    produk_stats['P_score'] = (
+        (produk_stats['n'] * produk_stats['Rs']) + (k * produk_stats['Rating_global_produk'])
+    ) / (produk_stats['n'] + k)
 
-outlet_final = produk_stats.groupby(['Outlet', 'outlet_id', 'e-commere', 'lat', 'lon']).agg(
-    rating_outlet=('P_score', 'mean')
-).reset_index()
+    outlet_final = produk_stats.groupby(['Outlet', 'outlet_id', 'e-commere', 'lat', 'lon']).agg(
+        rating_outlet=('P_score', 'mean')
+    ).reset_index()
 
-outlet_final['rating_outlet'] = outlet_final['rating_outlet'].round(2)
+    outlet_final['rating_outlet'] = outlet_final['rating_outlet'].round(2)
 
-# SIMPAN HASIL
-outlet_final.to_csv(exportPath, index=False)
-print(f"Berhasil! Atribut 'rating_outlet' disimpan di: {exportPath}")
+    # SIMPAN HASIL
+    outlet_final.to_csv(exportPath, index=False)
+    print(f"Berhasil! Atribut 'rating_outlet' disimpan di: {exportPath}")
+
+# MAIN
+if __name__ == "__main__":
+    main()
