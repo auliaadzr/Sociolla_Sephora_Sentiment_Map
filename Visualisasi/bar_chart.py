@@ -16,8 +16,6 @@ def main():
     # URUTKAN BESAR KE KECIL 
     df = df.sort_values(by='rating_outlet', ascending=False)
 
-    st.title('📊 Perbandingan Rating Oulet Brand')
-
     # Penentuan Warna
     color_map = {'sociolla': '#FF69B4', 'sephora': '#000000'}
 
@@ -46,7 +44,7 @@ def main():
     )
 
     fig.update_layout(
-    title_text="📊 Rating Outlet Sociolla vs Sephora",
+    title_text="📊 Perbandingan Rating Oulet Sociolla vs Sephora",
     plot_bgcolor='white',
     xaxis={
         'categoryorder':'total descending',
@@ -58,7 +56,6 @@ def main():
     title_font=dict(size=30, family="Arial", color="black"),
     margin=dict(t=60, b=80)
     )
-
 
     # TAMPILKAN DI STREAMLIT
     st.plotly_chart(fig, use_container_width=True)

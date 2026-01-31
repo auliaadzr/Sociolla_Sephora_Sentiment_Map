@@ -9,7 +9,6 @@ def main():
     importPath = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaning.csv")
     exportPath = os.path.join(BASE_DIR, "Data", "Raw", "data_rating_outlet.csv")
 
-
     df = pd.read_csv(importPath)
 
     # PROSES RUMUS BAYESIAN 

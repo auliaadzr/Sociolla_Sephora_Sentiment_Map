@@ -6,7 +6,6 @@ import os
 def main():
     # KONFIGURASI PATH ROOT PROJECT
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
     FILE_STATIC = os.path.join(BASE_DIR, "Data", "Raw", "data_website.csv")     
     FILE_OUTPUT = os.path.join(BASE_DIR, "Data", "Raw", "data_scraping.csv")  
 
@@ -147,7 +146,6 @@ def main():
     df_output.to_csv(FILE_OUTPUT, index=False)
 
     print("SELESAI | Total review:", len(df_output))
-
 
 # JIKA FILE DIJALANKAN LANGSUNG
 if __name__ == "__main__":

@@ -45,7 +45,6 @@ with st.sidebar:
         }
     )
 
-
 # ======================
 if selected == "Beranda":
     st.title("💄 Sociolla vs Sephora")

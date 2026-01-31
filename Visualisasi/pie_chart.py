@@ -42,9 +42,7 @@ def main():
         Rata_Kepuasan=('positif', 'mean'),
         Daftar_Mall=('Nama_Mall', lambda x: "<br>• ".join(x.unique())) 
     ).reset_index()
-
-    st.title('📊 Perbandingan Kepuasan Brand')
-
+    
     # WARNA
     color_map = {
         'Sociolla': '#FF69B4',
