@@ -44,18 +44,19 @@ def main():
     )
 
     fig.update_layout(
-        plot_bgcolor='white',
-        xaxis={
-            'categoryorder':'total descending',
-            'tickangle': 0,
-            # MENGECILKAN UKURAN FONT SUMBU X 
-            'tickfont': dict(size=9) 
-        },
-        yaxis=dict(range=[0, 5.5], gridcolor='lightgrey'),
-        font=dict(family="Arial", size=12),
-        title_font=dict(size=20, family="Arial", color="black"),
-        margin=dict(t=50, b=80) 
+    title_text="📊 Rating Outlet Sociolla vs Sephora",
+    plot_bgcolor='white',
+    xaxis={
+        'categoryorder':'total descending',
+        'tickangle': 0,
+        'tickfont': dict(size=9)
+    },
+    yaxis=dict(range=[0, 5.5], gridcolor='lightgrey'),
+    font=dict(family="Arial", size=12),
+    title_font=dict(size=30, family="Arial", color="black"),
+    margin=dict(t=60, b=80)
     )
+
 
     # TAMPILKAN DI STREAMLIT
     st.plotly_chart(fig, use_container_width=True)
