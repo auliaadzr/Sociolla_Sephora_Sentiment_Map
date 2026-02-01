@@ -66,6 +66,16 @@ def main():
     )
 
     fig.update_layout(
+        title_text="📊 Perbandingan Kepuasan Sociolla vs Sephora",
+    plot_bgcolor='white',
+    xaxis={
+        'categoryorder':'total descending',
+        'tickangle': 0,
+        'tickfont': dict(size=9)
+    },
+    yaxis=dict(range=[0, 5.5], gridcolor='lightgrey'),
+    font=dict(family="Arial", size=12),
+    title_font=dict(size=30, family="Arial", color="black"),
         legend_title="Brand",
         margin=dict(t=50, b=50, l=0, r=0)
     )
