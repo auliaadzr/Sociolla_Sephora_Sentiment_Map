@@ -134,7 +134,6 @@ elif selected == "Cleaning":
         "ℹ️ Proses cleaning mengolah data hasil scraping:\n"
         "- Menghapus duplikasi\n"
         "- Normalisasi teks ulasan\n\n"
-        "Pastikan data scraping sudah tersedia sebelum menjalankan cleaning."
     )
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))

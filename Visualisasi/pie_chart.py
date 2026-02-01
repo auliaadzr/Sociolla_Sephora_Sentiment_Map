@@ -4,9 +4,6 @@ import plotly.express as px
 import os
 
 def main():
-    # Konfigurasi Streamlit
-    st.set_page_config(page_title="Analisis Kepuasan Brand", layout="wide")
-
     # PENGATURAN PATH
     current_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(current_dir)
