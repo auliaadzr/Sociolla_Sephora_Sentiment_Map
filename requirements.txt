@@ -8,4 +8,4 @@ requests
 beautifulsoup4
 lxml
 numpy
-altair
+altair==4.2.2
