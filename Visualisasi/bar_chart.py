@@ -44,7 +44,7 @@ def main():
     )
 
     fig.update_layout(
-    title_text="📊 Perbandingan Rating Oulet Sociolla vs Sephora",
+    title_text="📊 Perbandingan Rating Outlet Sociolla vs Sephora",
     plot_bgcolor='white',
     xaxis={
         'categoryorder':'total descending',
