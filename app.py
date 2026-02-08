@@ -99,21 +99,11 @@ elif selected == "Scraping":
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     scraping_path = os.path.join(BASE_DIR, "Data", "Raw", "data_scraping.csv")
 
-    # ambil / update data
-    if st.button("🔄 Ambil / Perbarui Data Scraping Terbaru"):
-        with st.spinner("⏳ Sedang melakukan scraping review..."):
-            scraping_data.main()
-        st.success("✅ Scraping selesai! Data berhasil diperbarui.")
-
+    
     # JIKA DATA SUDAH ADA → TAMPILKAN
     if os.path.exists(scraping_path):
         df_scrap = pd.read_csv(scraping_path)
-
-        # Informasi metadata
-        last_update = os.path.getmtime(scraping_path)
-        st.caption(f"🕒 Terakhir diperbarui: {time.ctime(last_update)}")
         st.caption(f"📄 Total review: {len(df_scrap)}")
-
         st.dataframe(df_scrap, use_container_width=True)
 
         st.download_button(
@@ -140,24 +130,10 @@ elif selected == "Cleaning":
     raw_path = os.path.join(BASE_DIR, "Data", "Raw", "data_scraping.csv")
     clean_path = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaning.csv")
 
-    # Tombol SELALU ADA
-    if st.button("🔄 Jalankan / Perbarui Data Cleaning"):
-        if not os.path.exists(raw_path):
-            st.error("❌ Data scraping belum tersedia. Silakan jalankan scraping terlebih dahulu.")
-        else:
-            with st.spinner("⏳ Sedang membersihkan data..."):
-                cleaning.main()
-            st.success("✅ Data cleaning selesai!")
-
     # JIKA DATA CLEAN SUDAH ADA → TAMPILKAN
     if os.path.exists(clean_path):
         df_clean = pd.read_csv(clean_path)
-
-        # Metadata
-        last_update = os.path.getmtime(clean_path)
-        st.caption(f"🕒 Terakhir diperbarui: {time.ctime(last_update)}")
         st.caption(f"📄 Total data bersih: {len(df_clean)} baris")
-
         st.dataframe(df_clean, use_container_width=True)
 
         st.download_button(
@@ -184,24 +160,10 @@ elif selected == "Rating Outlet":
     clean_path = os.path.join(BASE_DIR, "Data", "Clean", "data_cleaning.csv")
     rating_path = os.path.join(BASE_DIR, "Data", "Raw", "data_rating_outlet.csv")
 
-    # TOMBOL SELALU ADA
-    if st.button("🔄 Hitung / Perbarui Rating Outlet"):
-        if not os.path.exists(clean_path):
-            st.error("❌ Data cleaning belum tersedia. Silakan jalankan cleaning terlebih dahulu.")
-        else:
-            with st.spinner("⏳ Menghitung rating outlet..."):
-                rating_outlet.main()
-            st.success("✅ Rating outlet berhasil diperbarui!")
-
     # JIKA DATA RATING SUDAH ADA → TAMPILKAN
     if os.path.exists(rating_path):
         df_rating = pd.read_csv(rating_path)
-
-        # Metadata
-        last_update = os.path.getmtime(rating_path)
-        st.caption(f"🕒 Terakhir diperbarui: {time.ctime(last_update)}")
         st.caption(f"🏬 Total outlet: {df_rating['outlet_id'].nunique()}")
-
         st.dataframe(df_rating, use_container_width=True)
 
         st.download_button(
